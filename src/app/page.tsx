@@ -9,28 +9,30 @@ import { List, ListItem } from '@/components/List'
 import { SectionIntro } from '@/components/SectionIntro'
 import { StylizedImage } from '@/components/StylizedImage'
 import { Testimonial } from '@/components/Testimonial'
-import logoBrightPath from '@/images/clients/bright-path/logo-light.svg'
-import logoFamilyFund from '@/images/clients/family-fund/logo-light.svg'
-import logoGreenLife from '@/images/clients/green-life/logo-light.svg'
-import logoHomeWork from '@/images/clients/home-work/logo-light.svg'
-import logoMailSmirk from '@/images/clients/mail-smirk/logo-light.svg'
-import logoNorthAdventures from '@/images/clients/north-adventures/logo-light.svg'
-import logoPhobiaDark from '@/images/clients/phobia/logo-dark.svg'
-import logoPhobiaLight from '@/images/clients/phobia/logo-light.svg'
-import logoUnseal from '@/images/clients/unseal/logo-light.svg'
+
+
+import logoCles from '@/images/clients/cles_c_left.png'
+import logoCMB from '@/images/clients/logo_bianco_cmb_150x60.webp'
+import logoAwnas from '@/images/clients/awnaslogo.png'
+
+
 import imageLaptop from '@/images/laptop.jpg'
 import { type CaseStudy, type MDXEntry, loadCaseStudies } from '@/lib/mdx'
 import { RootLayout } from '@/components/RootLayout'
 
-const clients = [
-  ['Phobia', logoPhobiaLight],
-  ['Family Fund', logoFamilyFund],
-  ['Unseal', logoUnseal],
-  ['Mail Smirk', logoMailSmirk],
-  ['Home Work', logoHomeWork],
-  ['Green Life', logoGreenLife],
-  ['Bright Path', logoBrightPath],
-  ['North Adventures', logoNorthAdventures],
+
+
+const clients: Array<[string, typeof logoCles]> = [
+  // ['Phobia', logoPhobiaLight],
+  // ['Family Fund', logoFamilyFund],
+  ['Cles', logoCles],
+  ['CMB', logoCMB],
+  ['Awnas', logoAwnas],
+  // ['Mail Smirk', logoMailSmirk],
+  // ['Home Work', logoHomeWork],
+  // ['Green Life', logoGreenLife],
+  // ['Bright Path', logoBrightPath],
+  // ['North Adventures', logoNorthAdventures],
 ]
 
 function Clients() {
@@ -46,12 +48,12 @@ function Clients() {
         <FadeInStagger faster>
           <ul
             role="list"
-            className="mt-10 grid grid-cols-2 gap-x-8 gap-y-10 lg:grid-cols-4"
+            className="mt-10 grid grid-cols-2 gap-x-8 gap-y-10 lg:grid-cols-4  place-items-center"
           >
             {clients.map(([client, logo]) => (
-              <li key={client}>
+              <li  key={client}>
                 <FadeIn>
-                  <Image src={logo} alt={client} unoptimized />
+                  <Image className="max-h-24 w-auto block" src={logo} alt={client} unoptimized />
                 </FadeIn>
               </li>
             ))}
@@ -131,8 +133,7 @@ function Services() {
         className="mt-24 sm:mt-32 lg:mt-40"
       >
         <p>
-          As long as those opportunities involve giving us money to re-purpose
-          old projects — we can come up with an endless number of those.
+          As long as you have the right idea, we can professionally guide you and bring it to life with quality, creativity, and attention to detail.
         </p>
       </SectionIntro>
       <Container className="mt-16">
@@ -148,23 +149,16 @@ function Services() {
           </div>
           <List className="mt-16 lg:mt-0 lg:w-1/2 lg:min-w-132 lg:pl-4">
             <ListItem title="Web development">
-              We specialise in crafting beautiful, high quality marketing pages.
-              The rest of the website will be a shell that uses lorem ipsum
-              everywhere.
+              We create modern, responsive websites designed to deliver exceptional user experiences and strong visual impact.
             </ListItem>
             <ListItem title="Application development">
-              We have a team of skilled developers who are experts in the latest
-              app frameworks, like Angular 1 and Google Web Toolkit.
+              Our team builds high-performance mobile applications with intuitive functionality and seamless user interaction across platforms.
             </ListItem>
-            <ListItem title="E-commerce">
-              We are at the forefront of modern e-commerce development. Which
-              mainly means adding your logo to the Shopify store template we’ve
-              used for the past six years.
+            <ListItem title="Construction Design Solutions">
+              We provide digital design support for construction projects, including planning visuals, layouts, and structured design concepts.
             </ListItem>
-            <ListItem title="Custom content management">
-              At Studio we understand the importance of having a robust and
-              customised CMS. That’s why we run all of our client projects out
-              of a single, enormous Joomla instance.
+            <ListItem title="UI/UX Design & Layouts">
+              We specialize in crafting clean, user-friendly interfaces that enhance usability, improve engagement, and align perfectly with your brand.
             </ListItem>
           </List>
         </div>
@@ -196,16 +190,18 @@ export default async function Home() {
 
       <Clients />
 
-      <CaseStudies caseStudies={caseStudies} />
+      {/* <CaseStudies caseStudies={caseStudies} /> */}
+
+      <Services />
 
       <Testimonial
         className="mt-24 sm:mt-32 lg:mt-40"
-        client={{ name: 'Phobia', logo: logoPhobiaDark }}
+        client={{ name: 'Phobia', logo: logoCles }}
       >
-        Their technical expertise and creative approach really stood out. They understood the requirements quickly and turned ideas into a fully functional digital solution.
+        Delivered on time and met client expectations with a solution aligned to requirements. Reliable and professional.
       </Testimonial>
 
-      <Services />
+      
 
       <ContactSection />
     </RootLayout>

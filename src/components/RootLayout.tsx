@@ -13,6 +13,8 @@ import { usePathname } from 'next/navigation'
 import clsx from 'clsx'
 import { motion, MotionConfig, useReducedMotion } from 'framer-motion'
 
+import Image from 'next/image'
+
 import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
 import { Footer } from '@/components/Footer'
@@ -20,6 +22,7 @@ import { GridPattern } from '@/components/GridPattern'
 import { Logo, Logomark } from '@/components/Logo'
 import { Offices } from '@/components/Offices'
 import { SocialMedia } from '@/components/SocialMedia'
+import TextIconBW from '@/images/text-icon-bw.png'
 
 const RootLayoutContext = createContext<{
   logoHovered: boolean
@@ -69,7 +72,7 @@ function Header({
           onMouseEnter={() => setLogoHovered(true)}
           onMouseLeave={() => setLogoHovered(false)}
         >
-          <Logomark
+          {/* <Logomark
             className="h-8 sm:hidden"
             invert={invert}
             filled={logoHovered}
@@ -78,7 +81,9 @@ function Header({
             className="hidden h-8 sm:block"
             invert={invert}
             filled={logoHovered}
-          />
+          /> */}
+
+          <Image className="max-w-3xs" src={TextIconBW} alt="Logo" />
         </Link>
         <div className="flex items-center gap-x-8">
           <Button href="/contact" invert={invert}>
@@ -246,12 +251,12 @@ function RootLayoutInner({ children }: { children: React.ReactNode }) {
                       className="mt-6 grid grid-cols-1 gap-8 sm:grid-cols-2"
                     />
                   </div>
-                  <div className="sm:border-l sm:border-transparent sm:pl-16">
+                  {/* <div className="sm:border-l sm:border-transparent sm:pl-16">
                     <h2 className="font-display text-base font-semibold text-white">
                       Follow us
                     </h2>
                     <SocialMedia className="mt-6" invert />
-                  </div>
+                  </div> */}
                 </div>
               </Container>
             </div>

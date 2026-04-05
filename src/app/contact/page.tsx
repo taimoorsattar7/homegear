@@ -113,8 +113,8 @@ function ContactDetails() {
         </h2>
         <dl className="mt-6 grid grid-cols-1 gap-8 text-sm sm:grid-cols-2">
           {[
-            ['Careers', 'careers@studioagency.com'],
-            ['Press', 'press@studioagency.com'],
+            ['Info', 'info@homegear.dev'],
+            // ['Press', 'press@studioagency.com'],
           ].map(([label, email]) => (
             <div key={email}>
               <dt className="font-semibold text-neutral-950">{label}</dt>
@@ -131,12 +131,12 @@ function ContactDetails() {
         </dl>
       </Border>
 
-      <Border className="mt-16 pt-16">
+      {/* <Border className="mt-16 pt-16">
         <h2 className="font-display text-base font-semibold text-neutral-950">
           Follow us
         </h2>
         <SocialMedia className="mt-6" />
-      </Border>
+      </Border> */}
     </FadeIn>
   )
 }
@@ -155,7 +155,7 @@ export default function Contact() {
 
       <Container className="mt-24 sm:mt-32 lg:mt-40">
         <div className="grid grid-cols-1 gap-x-8 gap-y-24 lg:grid-cols-2">
-          <ContactForm />
+          {/* <ContactForm /> */}
           <ContactDetails />
         </div>
       </Container>

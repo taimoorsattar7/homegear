@@ -1,0 +1,199 @@
+import imageAngelaFisher from '@/images/team/angela-fisher.jpg'
+
+export const article = {
+  date: '2022-12-01',
+  title: 'Cybersecurity and APIs: Securing the Backbone of Modern Applications',
+  description:
+    'As a developer,  the most important aspect of your job is naming components. It’s not just about being descriptive and clear, but also about having fun and being creative.',
+  author: {
+    name: 'Angela Fisher',
+    role: 'Front-end Developer',
+    image: { src: imageAngelaFisher },
+  },
+}
+
+export const metadata = {
+  title: article.title,
+  description: article.description,
+}
+
+
+# 
+
+In today’s digital ecosystem, **APIs (Application Programming Interfaces)** play a critical role in connecting systems, applications, and services. From mobile apps to web platforms, APIs enable seamless communication and data exchange. However, this connectivity also introduces security risks, making **API cybersecurity a top priority for modern businesses**.
+
+---
+
+## 1. What is an API?
+
+An API is a set of rules that allows different software systems to communicate with each other.
+
+### Example:
+
+When you use a website or mobile app:
+
+* The frontend (what users see) sends a request
+* The API processes the request
+* The server sends back data
+
+For instance, a login form sends your credentials to an API, which verifies them and returns a response.
+
+---
+
+## 2. Why APIs Are a Security Risk
+
+APIs expose endpoints that can be accessed over the internet. If not properly secured, they can become entry points for attackers.
+
+Common risks include:
+
+* unauthorized access
+* data leaks
+* service disruption
+
+Because APIs often handle sensitive data, they are a **high-value target for cyberattacks**.
+
+---
+
+## 3. Common API Security Threats (With Examples)
+
+### 🔓 1. Broken Authentication
+
+Weak or missing authentication allows unauthorized users to access APIs.
+
+**Example:**
+An API endpoint does not require proper login verification, allowing anyone to retrieve user data.
+
+---
+
+### 🔑 2. Broken Authorization
+
+Users can access data or actions they should not be allowed to.
+
+**Example:**
+A user changes a URL parameter and gains access to another user’s account information.
+
+---
+
+### 📦 3. Data Exposure
+
+Sensitive data is returned without proper filtering or protection.
+
+**Example:**
+An API returns full user details, including passwords or private information, instead of limited data.
+
+---
+
+### 🚫 4. Rate Limit Attacks (DDoS on APIs)
+
+Attackers send too many requests, overwhelming the system.
+
+**Example:**
+An API receives thousands of requests per second, causing the application to slow down or crash.
+
+---
+
+### 🧪 5. Injection Attacks
+
+Malicious code is inserted into API requests.
+
+**Example:**
+An attacker sends a harmful database query through an API input field to extract or modify data.
+
+---
+
+## 4. Best Practices for Securing APIs
+
+### 🔐 Authentication and Authorization
+
+* Use secure methods like OAuth or JWT
+* Ensure users can only access what they are permitted to
+
+---
+
+### 🔒 Use HTTPS Encryption
+
+All API communication should be encrypted.
+
+**Example:**
+HTTPS protects data exchanged between client and server from being intercepted.
+
+---
+
+### 🚦 Rate Limiting
+
+Limit the number of requests a user can make.
+
+**Example:**
+Allow only 100 requests per minute per user to prevent abuse.
+
+---
+
+### 🧾 Input Validation
+
+Validate and sanitize all incoming data.
+
+**Example:**
+Reject unexpected or harmful inputs before processing them.
+
+---
+
+### 🔍 Logging and Monitoring
+
+Track API activity to detect unusual behavior.
+
+**Example:**
+Identify repeated failed login attempts or abnormal traffic spikes.
+
+---
+
+## 5. Real-World Scenario
+
+Consider a web application with a payment system:
+
+* The frontend sends payment details to an API
+* The API processes and communicates with a payment gateway
+
+If the API is not secure:
+
+* attackers could intercept payment data
+* unauthorized users could access transactions
+* the system could be disrupted
+
+With proper API security:
+
+* data is encrypted
+* access is controlled
+* activity is monitored
+
+---
+
+![](./typewriter.jpg)
+
+## Conclusion
+
+APIs are the backbone of modern applications, enabling connectivity and innovation. However, they also introduce security challenges that cannot be ignored. By implementing strong authentication, encryption, monitoring, and validation practices, businesses can protect their APIs from threats and ensure secure, reliable operations.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
