@@ -16,7 +16,7 @@ import imageTaimoor from '@/images/team/taimoor.jpg'
 import { loadArticles } from '@/lib/mdx'
 import { RootLayout } from '@/components/RootLayout'
 // IMAGES
-import logoDocker from '@/images/tech/Docker_Logo.png'
+import logoDocker from '@/images/tech/docker_logo.png'
 import logoNextjs from '@/images/tech/nextjs-3.svg'
 import logoDrupal from '@/images/tech/drupal_logo.png'
 import logoJavascript from '@/images/tech/javaScript_logo.png'
