@@ -182,22 +182,17 @@ export const metadata: Metadata = {
     'We believe that our strength lies in our collaborative approach, which puts our clients at the center of everything we do.',
 }
 
+import aboutContent from '@/content/about.json'
+
 export default async function About() {
   let blogArticles = (await loadArticles()).slice(0, 2)
 
   return (
     <RootLayout>
-      <PageIntro eyebrow="About us" title="We understand your needs and deliver together.">
-        <p>
-          We are a dedicated team that truly cares about your website and mobile performance. We focus on attention to detail and delivering results that meet—and exceed—your expectations. From design and development to thorough testing, we ensure every product is fully refined before it reaches our clients.
-        </p>
+      <PageIntro eyebrow={aboutContent.eyebrow} title={aboutContent.title}>
+        <p>{aboutContent.introMain}</p>
         <div className="mt-10 max-w-2xl space-y-6 text-base">
-          <p>
-            We believe our greatest strength lies in our collaborative approach, placing our clients at the center of everything we do. By working closely with you, we turn your ideas into high-quality digital solutions that are both effective and reliable.
-          </p>
-          <p>
-            We started with a simple goal: to offer high-quality digital services at fair and transparent pricing. Since the beginning, we’ve been committed to doing things differently—providing real value while maintaining strong relationships with our clients.
-          </p>
+          <p>{aboutContent.introSecondary}</p>
         </div>
       </PageIntro>
 

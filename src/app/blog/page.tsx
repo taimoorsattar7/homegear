@@ -18,16 +18,15 @@ export const metadata: Metadata = {
     'Stay up-to-date with the latest industry news as our marketing teams finds new ways to re-purpose old CSS tricks articles.',
 }
 
+import blogContent from '@/content/blog.json'
+
 export default async function Blog() {
   let articles = await loadArticles()
 
   return (
     <RootLayout>
-      <PageIntro eyebrow="Blog" title="The latest articles and news">
-        <p>
-          Stay up-to-date with the latest industry news as our marketing teams
-          finds new ways to re-purpose old CSS tricks articles.
-        </p>
+      <PageIntro eyebrow={blogContent.eyebrow} title={blogContent.title}>
+        <p>{blogContent.intro}</p>
       </PageIntro>
 
       <Container className="mt-24 sm:mt-32 lg:mt-40">

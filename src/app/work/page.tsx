@@ -143,18 +143,18 @@ export const metadata: Metadata = {
     'We believe in efficiency and maximizing our resources to provide the best value to our clients.',
 }
 
+import workContent from '@/content/work.json'
+
 export default async function Work() {
   let projects = await loadCaseStudies()
 
   return (
     <RootLayout>
       <PageIntro
-        eyebrow="Projects"
-        title="Proven digital solutions for real-world challenges."
+        eyebrow={workContent.eyebrow}
+        title={workContent.title}
       >
-        <p>
-          We design and build custom web and mobile applications, digital platforms, and creative media solutions tailored to meet the needs of businesses and brands worldwide.
-        </p>
+        <p>{workContent.intro}</p>
       </PageIntro>
 
       <ProjectsList projects={projects} />
