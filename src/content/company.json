@@ -1,12 +1,17 @@
 {
-  "name": "Studio",
+  "name": "Home Gear LLC",
   "email": "taimoor@homegear.dev",
-  "phone": "+1 (555) 000-0000",
+  "phone": "+1 (718) 555-0199",
+  "street": "2505 Young Ave",
+  "city": "Bronx, NY",
+  "zip": "10469",
+  "country": "USA",
+  "address": "2505 Young Ave, Bronx, NY 10469, USA",
   "offices": [
     {
-      "name": "Main Office",
-      "address1": "100 Innovation Way",
-      "address2": "Suite 400"
+      "name": "Bronx, NY",
+      "address1": "2505 Young Ave",
+      "address2": "Bronx, NY 10469, USA"
     }
   ]
 }

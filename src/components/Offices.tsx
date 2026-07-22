@@ -1,4 +1,5 @@
 import clsx from 'clsx'
+import companyContent from '@/content/company.json'
 
 function Office({
   name,
@@ -31,20 +32,15 @@ export function Offices({
 }: React.ComponentPropsWithoutRef<'ul'> & { invert?: boolean }) {
   return (
     <ul role="list" {...props}>
-      <li>
-        <Office name="Bronx, NY" invert={invert}>
-          2505 Young Ave
-          <br />
-          Bronx, NY, USA
-        </Office>
-      </li>
-      {/* <li>
-        <Office name="Billund" invert={invert}>
-          24 Lego Allé
-          <br />
-          7190, Billund, Denmark
-        </Office>
-      </li> */}
+      {companyContent.offices.map((office) => (
+        <li key={office.name}>
+          <Office name={office.name} invert={invert}>
+            {office.address1}
+            <br />
+            {office.address2}
+          </Office>
+        </li>
+      ))}
     </ul>
   )
 }
