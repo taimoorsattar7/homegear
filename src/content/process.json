@@ -3,12 +3,38 @@
   "title": "How we work",
   "intro": "We believe in efficiency and maximizing our resources to provide the best value to our clients through a structured, collaborative workflow.",
   "discoverTitle": "Discover",
-  "discoverContent": "We work closely with our clients to understand their goals, operations, and technical requirements before planning.",
+  "discoverContent": "We work closely with our clients to understand their needs and goals, embedding ourselves in their everyday operations.",
   "buildTitle": "Build",
   "buildContent": "Based on the discovery phase, we develop a comprehensive roadmap for each product and execute with precision.",
   "deliverTitle": "Deliver",
-  "deliverContent": "We rigorously test and launch projects, ensuring main features are fully functional and reliable.",
+  "deliverContent": "We ensure that the main pages of the site are fully functional and tested before launch.",
   "valuesEyebrow": "Our values",
   "valuesTitle": "Balancing reliability and innovation",
-  "valuesIntro": "We stand by our core values of meticulous detail, efficiency, adaptability, honesty, and loyalty."
+  "valuesIntro": "We stand by our core values to deliver quality products.",
+  "valuesList": [
+    {
+      "title": "Meticulous",
+      "description": "Attention to detail in every design, code structure, and user interaction."
+    },
+    {
+      "title": "Efficient",
+      "description": "We pride ourselves on meeting deadlines with streamlined workflows."
+    },
+    {
+      "title": "Adaptable",
+      "description": "Every business has unique needs, and we tailor our tech stack accordingly."
+    },
+    {
+      "title": "Honest",
+      "description": "Transparent communication and progress reporting at every milestone."
+    },
+    {
+      "title": "Loyal",
+      "description": "We foster long-term partnerships that extend well beyond project launch."
+    },
+    {
+      "title": "Innovative",
+      "description": "Staying on top of modern frameworks, performance, and best practices."
+    }
+  ]
 }

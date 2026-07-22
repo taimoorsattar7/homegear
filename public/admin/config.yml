@@ -89,6 +89,12 @@ collections:
           - { label: "Services Eyebrow", name: "servicesEyebrow", widget: "string" }
           - { label: "Services Section Title", name: "servicesTitle", widget: "string" }
           - { label: "Services Section Description", name: "servicesDescription", widget: "text" }
+          - label: "Services List"
+            name: "servicesList"
+            widget: "list"
+            fields:
+              - { label: "Service Title", name: "title", widget: "string" }
+              - { label: "Service Description", name: "description", widget: "text" }
 
       - label: "Our Work Page"
         name: "work_page"
@@ -112,6 +118,12 @@ collections:
           - { label: "Culture Section Eyebrow", name: "cultureEyebrow", widget: "string" }
           - { label: "Culture Section Title", name: "cultureTitle", widget: "string" }
           - { label: "Culture Section Description", name: "cultureDescription", widget: "text" }
+          - label: "Culture Values List"
+            name: "cultureList"
+            widget: "list"
+            fields:
+              - { label: "Value Title", name: "title", widget: "string" }
+              - { label: "Value Description", name: "description", widget: "text" }
 
       - label: "Our Process Page"
         name: "process_page"
@@ -121,6 +133,21 @@ collections:
           - { label: "Page Eyebrow", name: "eyebrow", widget: "string" }
           - { label: "Page Title", name: "title", widget: "string" }
           - { label: "Intro Description", name: "intro", widget: "text" }
+          - { label: "Discover Title", name: "discoverTitle", widget: "string" }
+          - { label: "Discover Description", name: "discoverContent", widget: "text" }
+          - { label: "Build Title", name: "buildTitle", widget: "string" }
+          - { label: "Build Description", name: "buildContent", widget: "text" }
+          - { label: "Deliver Title", name: "deliverTitle", widget: "string" }
+          - { label: "Deliver Description", name: "deliverContent", widget: "text" }
+          - { label: "Values Eyebrow", name: "valuesEyebrow", widget: "string" }
+          - { label: "Values Title", name: "valuesTitle", widget: "string" }
+          - { label: "Values Description", name: "valuesIntro", widget: "text" }
+          - label: "Process Values List"
+            name: "valuesList"
+            widget: "list"
+            fields:
+              - { label: "Value Title", name: "title", widget: "string" }
+              - { label: "Value Description", name: "description", widget: "text" }
 
       - label: "Blog Page Header"
         name: "blog_page"
@@ -130,6 +157,19 @@ collections:
           - { label: "Page Eyebrow", name: "eyebrow", widget: "string" }
           - { label: "Page Title", name: "title", widget: "string" }
           - { label: "Intro Description", name: "intro", widget: "text" }
+
+      - label: "Team Members"
+        name: "team_members"
+        file: "src/content/team.json"
+        format: "json"
+        fields:
+          - label: "Team Member List"
+            name: "team"
+            widget: "list"
+            fields:
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Role", name: "role", widget: "string" }
+              - { label: "Image Path", name: "image", widget: "string" }
 
       - label: "Company Info & Contact"
         name: "company_info"

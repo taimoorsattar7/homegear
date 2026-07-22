@@ -41,7 +41,7 @@ function Clients() {
       <Container>
         <FadeIn className="flex items-center gap-x-8">
           <h2 className="text-center font-display text-sm font-semibold tracking-wider text-white sm:text-left">
-            We’ve worked with hundreds of amazing people
+            {homeContent.clientsHeading}
           </h2>
           <div className="h-px flex-auto bg-neutral-800" />
         </FadeIn>
@@ -126,13 +126,11 @@ function Services() {
   return (
     <>
       <SectionIntro
-        eyebrow="Services"
-        title="We help you identify, explore and respond to new opportunities."
+        eyebrow={homeContent.servicesEyebrow}
+        title={homeContent.servicesTitle}
         className="mt-24 sm:mt-32 lg:mt-40"
       >
-        <p>
-          As long as you have the right idea, we can professionally guide you and bring it to life with quality, creativity, and attention to detail.
-        </p>
+        <p>{homeContent.servicesDescription}</p>
       </SectionIntro>
       <Container className="mt-16">
         <div className="lg:flex lg:items-center lg:justify-end">
@@ -146,18 +144,11 @@ function Services() {
             </FadeIn>
           </div>
           <List className="mt-16 lg:mt-0 lg:w-1/2 lg:min-w-132 lg:pl-4">
-            <ListItem title="Web development">
-              We create modern, responsive websites designed to deliver exceptional user experiences and strong visual impact.
-            </ListItem>
-            <ListItem title="Application development">
-              Our team builds high-performance mobile applications with intuitive functionality and seamless user interaction across platforms.
-            </ListItem>
-            <ListItem title="Construction Design Solutions">
-              We provide digital design support for construction projects, including planning visuals, layouts, and structured design concepts.
-            </ListItem>
-            <ListItem title="UI/UX Design & Layouts">
-              We specialize in crafting clean, user-friendly interfaces that enhance usability, improve engagement, and align perfectly with your brand.
-            </ListItem>
+            {homeContent.servicesList.map((service) => (
+              <ListItem key={service.title} title={service.title}>
+                {service.description}
+              </ListItem>
+            ))}
           </List>
         </div>
       </Container>

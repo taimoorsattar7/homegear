@@ -45,26 +45,19 @@ function Culture() {
   return (
     <div className="mt-24 rounded-4xl bg-neutral-950 py-24 sm:mt-32 lg:mt-40 lg:py-32">
       <SectionIntro
-        eyebrow="Our culture"
-        title="Balance your passion for work with a passion for life."
+        eyebrow={aboutContent.cultureEyebrow}
+        title={aboutContent.cultureTitle}
         invert
       >
-        <p>
-          We are a team of like-minded individuals who share strong core values. We believe in fostering a culture of loyalty, trust, and compassion, where we support each other’s growth and success. By empowering our team with flexibility and accountability, we create an environment where everyone can thrive and contribute their best work.
-        </p>
+        <p>{aboutContent.cultureDescription}</p>
       </SectionIntro>
       <Container className="mt-16">
         <GridList>
-          <GridListItem title="Loyalty" invert>
-            We build lasting relationships and support each other’s growth.
-          </GridListItem>
-          <GridListItem title="Trust" invert>
-            We empower our team with flexibility and accountability.
-
-          </GridListItem>
-          <GridListItem title="Compassion" invert>
-            We respect one another and foster a supportive, understanding environment.
-          </GridListItem>
+          {aboutContent.cultureList.map((item) => (
+            <GridListItem key={item.title} title={item.title} invert>
+              {item.description}
+            </GridListItem>
+          ))}
         </GridList>
       </Container>
     </div>

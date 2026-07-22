@@ -5,5 +5,19 @@
   "introSecondary": "We believe our greatest strength lies in our collaborative approach, placing our clients at the center of everything we do. By working closely with you, we turn your ideas into high-quality digital solutions that are both effective and reliable.",
   "cultureEyebrow": "Our culture",
   "cultureTitle": "Balance your passion for work with a passion for life.",
-  "cultureDescription": "We are a team of like-minded individuals who share strong core values. We believe in fostering a culture of loyalty, trust, and compassion, where we support each other’s growth and success."
+  "cultureDescription": "We are a team of like-minded individuals who share strong core values. We believe in fostering a culture of loyalty, trust, and compassion, where we support each other’s growth and success.",
+  "cultureList": [
+    {
+      "title": "Loyalty",
+      "description": "We build lasting relationships and support each other’s growth."
+    },
+    {
+      "title": "Trust",
+      "description": "We empower our team with flexibility and accountability."
+    },
+    {
+      "title": "Compassion",
+      "description": "We respect one another and foster a supportive, understanding environment."
+    }
+  ]
 }
