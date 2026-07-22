@@ -3,66 +3,69 @@ client: "Unseal"
 title: "Get a hodl of your health"
 date: "2022-10"
 service: "Blockchain development"
-description: "Unseal is the first NFT platform where users can mint and trade NFTs of their own personal health records, allowing them to take control of their data."
+description: "Unseal is an innovative platform enabling users to mint and manage secure digital health records, taking total control of their data."
 summary:
-  - "Unseal is the first NFT platform where users can mint and trade NFTs of their own personal health records, allowing them to take control of their data."
-  - "We built out the blockchain infrastructure that supports Unseal. Unfortunately, we took a massive loss on this project when Unseal’s cryptocurrency, PlaceboCoin, went to zero."
+  - "Unseal is an innovative platform enabling users to mint and manage secure digital health records, taking total control of their data."
+  - "We built out the core infrastructure and smart contract integrations that support Unseal with security and performance."
 testimonial:
   author:
     name: "Emily Selman"
     role: "Head of Engineering at Unseal"
-  content: "Studio did an amazing job building out our core blockchain infrastructure and I’m sure once PlaceboCoin rallies they’ll be able to finish the project."
+  content: "Studio did an amazing job building out our core infrastructure and application interface."
 ---
 
 import logo from '@/images/clients/unseal/logomark-dark.svg'
 import imageEmilySelman from './emily-selman.jpg'
+import imageHero from './hero.jpg'
 
 export const caseStudy = {
   client: 'Unseal',
   title: 'Get a hodl of your health',
   description:
-    'Unseal is the first NFT platform where users can mint and trade NFTs of their own personal health records, allowing them to take control of their data.',
+    'Unseal is an innovative platform enabling users to mint and manage secure digital health records, taking total control of their data.',
   summary: [
-    'Unseal is the first NFT platform where users can mint and trade NFTs of their own personal health records, allowing them to take control of their data.',
-    'We built out the blockchain infrastructure that supports Unseal. Unfortunately, we took a massive loss on this project when Unseal’s cryptocurrency, PlaceboCoin, went to zero.',
+    'Unseal is an innovative platform enabling users to mint and manage secure digital health records, taking total control of their data.',
+    'We built out the core infrastructure and smart contract integrations that support Unseal with security and performance.',
   ],
   logo,
+  image: { src: imageHero },
   date: '2022-10',
   service: 'Blockchain development',
   testimonial: {
     author: { name: 'Emily Selman', role: 'Head of Engineering at Unseal' },
     content:
-      'Studio did an amazing job building out our core blockchain infrastructure and I’m sure once PlaceboCoin rallies they’ll be able to finish the project.',
+      'Studio did an amazing job building out our core infrastructure and application interface.',
   },
 }
 
 ## Overview
 
-Annoyed that his wife’s gynaecologist would not disclose the results of her pap smear, Unseal’s founder Kevin came up with the idea of using the block chain to store individual health records.
+Health records are fragmented across legacy systems. Unseal approached us to architect a decentralized, user-permissioned platform where patients securely own, manage, and share their verified health records.
 
-Unseal approached us early in their development, having just raised funds through an ICO of their cryptocurrency PlaceboCoin. Having never worked on a web3 product we decided to farm the project out to an agency in Kyiv and skim profits off the top. Despite frequent complaints about missile strikes and power outages, the Ukrainians delivered the brief ahead of schedule.
-
-After reaching a high of $12k, PlaceboCoin went to zero in a matter of hours. Because we took payment in PlaceboCoin but our subcontractors insisted on being paid in USD we have taken a huge financial loss on this project.
+We engineered high-throughput API endpoints, decentralized storage encryption, and seamless mobile wallet connectivity to allow users instant access to their health history anywhere in the world.
 
 ## What we did
 
 <TagList>
   <TagListItem>Blockchain development</TagListItem>
-  <TagListItem>Backend (Solidity)</TagListItem>
+  <TagListItem>Backend Architecture</TagListItem>
   <TagListItem>Smart contracts</TagListItem>
+  <TagListItem>Encrypted Storage</TagListItem>
 </TagList>
 
 <Blockquote
   author={{ name: 'Emily Selman', role: 'Head of Engineering at Unseal' }}
   image={{ src: imageEmilySelman }}
 >
-  Studio did an amazing job building out our core blockchain infrastructure and
-  I’m sure once PlaceboCoin rallies they’ll be able to finish the project.
+  Studio did an amazing job building out our core infrastructure and application interface.
 </Blockquote>
 
-<StatList>
-  <StatListItem value="34%" label="Fewer transactions" />
-  <StatListItem value="10%" label="Slower transactions" />
-  <StatListItem value="1000ms" label="Transaction latency" />
-  <StatListItem value="3" label="Active nodes" />
-</StatList>
+## Project Snapshots
+
+<div className="mt-10 overflow-hidden rounded-3xl bg-neutral-100 ring-1 ring-neutral-950/10 p-2 sm:p-4">
+  <img
+    src={imageHero.src}
+    alt="Unseal Project Snapshot"
+    className="w-full h-auto rounded-2xl shadow-lg"
+  />
+</div>

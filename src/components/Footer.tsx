@@ -8,35 +8,25 @@ import { FadeIn } from '@/components/FadeIn'
 // import { socialMediaProfiles } from '@/components/SocialMedia'
 
 const navigation = [
-  // {
-  //   title: 'Work',
-  //   links: [
-  //     { title: 'FamilyFund', href: '/work/family-fund' },
-  //     { title: 'Unseal', href: '/work/unseal' },
-  //     { title: 'Phobia', href: '/work/phobia' },
-  //     {
-  //       title: (
-  //         <>
-  //           See all <span aria-hidden="true">&rarr;</span>
-  //         </>
-  //       ),
-  //       href: '/work',
-  //     },
-  //   ],
-  // },
+  {
+    title: 'Projects',
+    links: [
+      { title: 'Phobia', href: '/work/phobia' },
+      { title: 'Unseal', href: '/work/unseal' },
+      { title: 'FamilyFund', href: '/work/family-fund' },
+      { title: 'See all projects →', href: '/work' },
+    ],
+  },
   {
     title: 'Company',
     links: [
-      { title: 'About', href: '/about' },
-      { title: 'Process', href: '/process' },
+      { title: 'Our Work', href: '/work' },
+      { title: 'About Us', href: '/about' },
+      { title: 'Our Process', href: '/process' },
       { title: 'Blog', href: '/blog' },
-      { title: 'Contact us', href: '/contact' },
+      { title: 'Contact Us', href: '/contact' },
     ],
   },
-  // {
-  //   title: 'Connect',
-  //   links: socialMediaProfiles,
-  // },
 ]
 
 function Navigation() {

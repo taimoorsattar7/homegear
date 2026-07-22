@@ -51,7 +51,6 @@ const navLinks = [
   { href: '/about', label: 'About Us' },
   { href: '/process', label: 'Our Process' },
   { href: '/blog', label: 'Blog' },
-  { href: '/admin', label: 'CMS Admin', isCms: true },
 ]
 
 function Header({
@@ -106,11 +105,6 @@ function Header({
                 )}
               >
                 {link.label}
-                {link.isCms && (
-                  <span className="ml-1.5 rounded-full bg-emerald-500/20 px-1.5 py-0.5 text-[10px] font-bold text-emerald-400 uppercase tracking-wider">
-                    CMS
-                  </span>
-                )}
               </Link>
             )
           })}
@@ -192,10 +186,6 @@ function Navigation() {
       <NavigationRow>
         <NavigationItem href="/process">Our Process</NavigationItem>
         <NavigationItem href="/blog">Blog</NavigationItem>
-      </NavigationRow>
-      <NavigationRow>
-        <NavigationItem href="/admin">CMS Admin ⚙️</NavigationItem>
-        <NavigationItem href="/contact">Contact Us</NavigationItem>
       </NavigationRow>
     </nav>
   )

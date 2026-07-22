@@ -11,11 +11,12 @@ testimonial:
   author:
     name: "Jenny Wilson"
     role: "CPO of Phobia"
-  content: "The team at Studio went above and beyond with our onboarding, even finding a way to access the user’s microphone without triggering one of those annoying permission dialogs."
+  content: "The team at Studio went above and beyond with our onboarding, delivering a smooth user experience."
 ---
 
 import logo from '@/images/clients/phobia/logomark-dark.svg'
 import imageJennyWilson from './jenny-wilson.jpg'
+import imageHero from './hero.jpg'
 
 export const caseStudy = {
   client: 'Phobia',
@@ -27,46 +28,46 @@ export const caseStudy = {
     'We worked with Phobia to develop a new onboarding flow. A user is shown pictures of common phobias and we use the microphone to detect which ones make them scream, feeding the results into the matching algorithm.',
   ],
   logo,
+  image: { src: imageHero },
   date: '2022-06',
   service: 'App development',
   testimonial: {
     author: { name: 'Jenny Wilson', role: 'CPO of Phobia' },
     content:
-      'The team at Studio went above and beyond with our onboarding, even finding a way to access the user’s microphone without triggering one of those annoying permission dialogs.',
+      'The team at Studio went above and beyond with our onboarding, delivering a smooth user experience.',
   },
 }
 
 ## Overview
 
-Noticing incredibly high churn, the team at Phobia came to the conclusion that, instead of having a fundamentally flawed business idea, they needed to improve their onboarding process.
+Noticing high user drop-offs, the team at Phobia came to the conclusion that they needed to improve their onboarding process.
 
-Previously users selected their phobias manually but this led to some users selecting things they weren’t actually afraid of to increase their matches.
+Previously users selected their phobias manually, but this led to inaccurate profile tags. To address this, we designed an interactive onboarding experience that displays common visual scenarios and captures real user reactions.
 
-To combat this, we developed a system that displays a slideshow of common phobias during onboarding. We then use malware to surreptitiously access their microphone and detect when they have audible reactions. We measure the pitch, volume and duration of their screams and feed that information to the matching algorithm.
-
-The next phase is a VR version of the onboarding flow where users are subjected to a series of scenarios that will determine their fears. We are currently developing the first scenario, working title: “Jumping out of a plane full of spiders”.
+The next phase is an interactive version of the onboarding flow where users are presented with a series of tailored scenarios to accurately calibrate their matching preferences.
 
 ## What we did
 
 <TagList>
   <TagListItem>Android</TagListItem>
   <TagListItem>iOS</TagListItem>
-  <TagListItem>Malware</TagListItem>
-  <TagListItem>VR</TagListItem>
+  <TagListItem>UI/UX Design</TagListItem>
+  <TagListItem>Interactive Onboarding</TagListItem>
 </TagList>
 
 <Blockquote
   author={{ name: 'Jenny Wilson', role: 'CPO of Phobia' }}
   image={{ src: imageJennyWilson }}
 >
-  The team at Studio went above and beyond with our onboarding, even finding a
-  way to access the user’s microphone without triggering one of those annoying
-  permission dialogs.
+  The team at Studio went above and beyond with our onboarding, delivering a smooth user experience.
 </Blockquote>
 
-<StatList>
-  <StatListItem value="20%" label="Churn rate" />
-  <StatListItem value="5x" label="Uninstalls" />
-  <StatListItem value="2.3" label="App store rating" />
-  <StatListItem value="8" label="Pending lawsuits" />
-</StatList>
+## Project Snapshots
+
+<div className="mt-10 overflow-hidden rounded-3xl bg-neutral-100 ring-1 ring-neutral-950/10 p-2 sm:p-4">
+  <img
+    src={imageHero.src}
+    alt="Phobia Project Snapshot"
+    className="w-full h-auto rounded-2xl shadow-lg"
+  />
+</div>

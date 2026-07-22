@@ -95,17 +95,12 @@ function ProjectsSection({
                     />
                   </Link>
                 </h3>
-                <p className="mt-6 flex gap-x-2 text-sm text-neutral-950">
-                  <time
-                    dateTime={project.date.split('-')[0]}
-                    className="font-semibold"
-                  >
-                    {project.date.split('-')[0]}
-                  </time>
+                <p className="mt-6 flex items-center gap-x-2 text-sm">
+                  <span className="font-semibold text-neutral-950">{project.client}</span>
                   <span className="text-neutral-300" aria-hidden="true">
                     /
                   </span>
-                  <span className="font-medium text-emerald-600">Project</span>
+                  <span className="font-medium text-neutral-600">Project</span>
                 </p>
                 <p className="mt-6 font-display text-2xl font-semibold text-neutral-950 group-hover:text-neutral-950">
                   {project.title}
@@ -170,12 +165,6 @@ export default async function Home() {
     <RootLayout>
       <Container className="mt-24 sm:mt-32 md:mt-56">
         <FadeIn className="max-w-3xl">
-          <div className="mb-6 inline-flex items-center gap-x-2 rounded-full bg-neutral-950/5 px-4 py-1.5 ring-1 ring-neutral-950/10 backdrop-blur-md">
-            <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="text-xs font-semibold uppercase tracking-wider text-neutral-800">
-              Digital Studio & CMS Powered
-            </span>
-          </div>
           <h1 className="font-display text-5xl font-medium tracking-tight text-balance text-neutral-950 sm:text-7xl">
             {homeContent.heroTitle}
           </h1>
