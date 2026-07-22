@@ -59,15 +59,32 @@ collections:
       - { label: "Description", name: "description", widget: "text" }
       - label: "Author"
         name: "author"
-        widget: "object"
-        fields:
-          - { label: "Name", name: "name", widget: "string" }
-          - { label: "Role", name: "role", widget: "string" }
+        widget: "select"
+        options:
+          - "Taimoor Sattar"
+          - "Angela Fisher"
+          - "Leslie Alexander"
+          - "Dries Vincent"
+          - "Kathryn Murphy"
+          - "Chelsea Hagon"
+          - "Emma Dorsey"
       - { label: "Article Content (MDX)", name: "body", widget: "markdown" }
 
   - name: "pages"
     label: "Website Pages Content"
     files:
+      - label: "Team Members"
+        name: "team_members"
+        file: "src/content/team.json"
+        fields:
+          - label: "Team List"
+            name: "team"
+            widget: "list"
+            fields:
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Role", name: "role", widget: "string" }
+              - { label: "Image Path", name: "image", widget: "string" }
+
       - label: "Home Page"
         name: "home_page"
         file: "src/content/home.json"
@@ -107,15 +124,6 @@ collections:
           - { label: "Page Eyebrow", name: "eyebrow", widget: "string" }
           - { label: "Page Title", name: "title", widget: "string" }
           - { label: "Intro Description", name: "intro", widget: "text" }
-          - { label: "Discover Title", name: "discoverTitle", widget: "string" }
-          - { label: "Discover Description", name: "discoverContent", widget: "text" }
-          - { label: "Build Title", name: "buildTitle", widget: "string" }
-          - { label: "Build Description", name: "buildContent", widget: "text" }
-          - { label: "Deliver Title", name: "deliverTitle", widget: "string" }
-          - { label: "Deliver Description", name: "deliverContent", widget: "text" }
-          - { label: "Values Eyebrow", name: "valuesEyebrow", widget: "string" }
-          - { label: "Values Title", name: "valuesTitle", widget: "string" }
-          - { label: "Values Description", name: "valuesIntro", widget: "text" }
 
       - label: "Blog Page Header"
         name: "blog_page"

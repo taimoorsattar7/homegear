@@ -16,6 +16,9 @@ const nextConfig = {
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'mdx'],
 }
 
+import remarkFrontmatter from 'remark-frontmatter'
+import remarkMdxFrontmatter from 'remark-mdx-frontmatter'
+
 function remarkMDXLayout(source, metaName) {
   let parser = Parser.extend(jsx())
   let parseOptions = { ecmaVersion: 'latest', sourceType: 'module' }
@@ -23,7 +26,8 @@ function remarkMDXLayout(source, metaName) {
   return (tree) => {
     let imp = `import _Layout from '${source}'`
     let exp = `export default function Layout(props) {
-      return <_Layout {...props} ${metaName}={${metaName}} />
+      let meta = typeof ${metaName} !== 'undefined' ? ${metaName} : (typeof frontmatter !== 'undefined' ? frontmatter : {})
+      return <_Layout {...props} ${metaName}={meta} />
     }`
 
     tree.children.push(
@@ -63,6 +67,8 @@ export default async function config() {
         ],
       ],
       remarkPlugins: [
+        remarkFrontmatter,
+        remarkMdxFrontmatter,
         remarkGfm,
         [
           unifiedConditional,

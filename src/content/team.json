@@ -1,0 +1,37 @@
+[
+  {
+    "name": "Taimoor Sattar",
+    "role": "Senior Project Manager / CEO",
+    "image": "@/images/team/taimoor.jpg"
+  },
+  {
+    "name": "Angela Fisher",
+    "role": "Front-end Developer",
+    "image": "@/images/team/angela-fisher.jpg"
+  },
+  {
+    "name": "Leslie Alexander",
+    "role": "Senior Designer",
+    "image": "@/images/team/leslie-alexander.jpg"
+  },
+  {
+    "name": "Dries Vincent",
+    "role": "Full-stack Developer",
+    "image": "@/images/team/dries-vincent.jpg"
+  },
+  {
+    "name": "Kathryn Murphy",
+    "role": "UI/UX Designer",
+    "image": "@/images/team/kathryn-murphy.jpg"
+  },
+  {
+    "name": "Chelsea Hagon",
+    "role": "Senior Designer",
+    "image": "@/images/team/chelsea-hagon.jpg"
+  },
+  {
+    "name": "Emma Dorsey",
+    "role": "Senior Developer",
+    "image": "@/images/team/emma-dorsey.jpg"
+  }
+]
