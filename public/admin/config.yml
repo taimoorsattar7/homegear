@@ -1,0 +1,107 @@
+# Sveltia CMS Configuration for Homegear
+backend:
+  name: github
+  repo: taimoorsattar7/homegear
+  branch: master
+
+# Enable local backend proxy for offline & local development (run `npm run cms`)
+local_backend: true
+
+media_folder: "src/images"
+public_folder: "@/images"
+
+collections:
+  - name: "projects"
+    label: "Projects We Have Worked On"
+    label_singular: "Project"
+    folder: "src/app/work"
+    path: "{{slug}}/page"
+    extension: "mdx"
+    format: "frontmatter"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Client / Project Name", name: "client", widget: "string" }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date (YYYY-MM)", name: "date", widget: "string" }
+      - { label: "Service / Category", name: "service", widget: "string" }
+      - { label: "Short Description", name: "description", widget: "text" }
+      - label: "Summary Paragraphs"
+        name: "summary"
+        widget: "list"
+        field: { label: "Paragraph", name: "paragraph", widget: "text" }
+      - label: "Testimonial (Optional)"
+        name: "testimonial"
+        widget: "object"
+        required: false
+        fields:
+          - label: "Author"
+            name: "author"
+            widget: "object"
+            fields:
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Role", name: "role", widget: "string" }
+          - { label: "Content", name: "content", widget: "text" }
+      - { label: "Project Content & Case Study (MDX)", name: "body", widget: "markdown" }
+
+  - name: "blog"
+    label: "Blog Articles"
+    label_singular: "Article"
+    folder: "src/app/blog"
+    path: "{{slug}}/page"
+    extension: "mdx"
+    format: "frontmatter"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Article Title", name: "title", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "datetime", format: "YYYY-MM-DD" }
+      - { label: "Description", name: "description", widget: "text" }
+      - label: "Author"
+        name: "author"
+        widget: "object"
+        fields:
+          - { label: "Name", name: "name", widget: "string" }
+          - { label: "Role", name: "role", widget: "string" }
+      - { label: "Article Content (MDX)", name: "body", widget: "markdown" }
+
+  - name: "pages"
+    label: "Website Pages & Content"
+    files:
+      - label: "Home Page Content"
+        name: "home_page"
+        file: "src/content/home.json"
+        fields:
+          - { label: "Hero Title", name: "heroTitle", widget: "string" }
+          - { label: "Hero Subtitle / Description", name: "heroDescription", widget: "text" }
+          - { label: "Clients Heading", name: "clientsHeading", widget: "string" }
+          - { label: "Services Section Eyebrow", name: "servicesEyebrow", widget: "string" }
+          - { label: "Services Section Title", name: "servicesTitle", widget: "string" }
+          - { label: "Services Section Description", name: "servicesDescription", widget: "text" }
+
+      - label: "About Page Content"
+        name: "about_page"
+        file: "src/content/about.json"
+        fields:
+          - { label: "Page Eyebrow", name: "eyebrow", widget: "string" }
+          - { label: "Page Title", name: "title", widget: "string" }
+          - { label: "Main Intro Paragraph", name: "introMain", widget: "text" }
+          - { label: "Secondary Intro Paragraph", name: "introSecondary", widget: "text" }
+          - { label: "Culture Section Eyebrow", name: "cultureEyebrow", widget: "string" }
+          - { label: "Culture Section Title", name: "cultureTitle", widget: "string" }
+          - { label: "Culture Section Description", name: "cultureDescription", widget: "text" }
+
+      - label: "Contact & Company Info"
+        name: "company_info"
+        file: "src/content/company.json"
+        fields:
+          - { label: "Company Name", name: "name", widget: "string" }
+          - { label: "Contact Email", name: "email", widget: "string" }
+          - { label: "Contact Phone", name: "phone", widget: "string" }
+          - label: "Offices"
+            name: "offices"
+            widget: "list"
+            fields:
+              - { label: "Office Location / City", name: "name", widget: "string" }
+              - { label: "Address Line 1", name: "address1", widget: "string" }
+              - { label: "Address Line 2", name: "address2", widget: "string" }

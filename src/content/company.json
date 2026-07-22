@@ -1,0 +1,12 @@
+{
+  "name": "Studio",
+  "email": "taimoor@homegear.dev",
+  "phone": "+1 (555) 000-0000",
+  "offices": [
+    {
+      "name": "Main Office",
+      "address1": "100 Innovation Way",
+      "address2": "Suite 400"
+    }
+  ]
+}

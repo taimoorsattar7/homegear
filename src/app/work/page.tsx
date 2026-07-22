@@ -22,69 +22,69 @@ import { formatDate } from '@/lib/formatDate'
 import { type CaseStudy, type MDXEntry, loadCaseStudies } from '@/lib/mdx'
 import { RootLayout } from '@/components/RootLayout'
 
-function CaseStudies({
-  caseStudies,
+function ProjectsList({
+  projects,
 }: {
-  caseStudies: Array<MDXEntry<CaseStudy>>
+  projects: Array<MDXEntry<CaseStudy>>
 }) {
   return (
     <Container className="mt-40">
       <FadeIn>
         <h2 className="font-display text-2xl font-semibold text-neutral-950">
-          Case studies
+          Projects We Have Worked On
         </h2>
       </FadeIn>
       <div className="mt-10 space-y-20 sm:space-y-24 lg:space-y-32">
-        {caseStudies.map((caseStudy) => (
-          <FadeIn key={caseStudy.client}>
+        {projects.map((project) => (
+          <FadeIn key={project.client}>
             <article>
               <Border className="grid grid-cols-3 gap-x-8 gap-y-8 pt-16">
                 <div className="col-span-full sm:flex sm:items-center sm:justify-between sm:gap-x-8 lg:col-span-1 lg:block">
                   <div className="sm:flex sm:items-center sm:gap-x-6 lg:block">
                     <Image
-                      src={caseStudy.logo}
+                      src={project.logo}
                       alt=""
                       className="h-16 w-16 flex-none"
                       unoptimized
                     />
                     <h3 className="mt-6 text-sm font-semibold text-neutral-950 sm:mt-0 lg:mt-8">
-                      {caseStudy.client}
+                      {project.client}
                     </h3>
                   </div>
                   <div className="mt-1 flex gap-x-4 sm:mt-0 lg:block">
                     <p className="text-sm tracking-tight text-neutral-950 after:ml-4 after:font-semibold after:text-neutral-300 after:content-['/'] lg:mt-2 lg:after:hidden">
-                      {caseStudy.service}
+                      {project.service}
                     </p>
                     <p className="text-sm text-neutral-950 lg:mt-2">
-                      <time dateTime={caseStudy.date}>
-                        {formatDate(caseStudy.date)}
+                      <time dateTime={project.date}>
+                        {formatDate(project.date)}
                       </time>
                     </p>
                   </div>
                 </div>
                 <div className="col-span-full lg:col-span-2 lg:max-w-2xl">
                   <p className="font-display text-4xl font-medium text-neutral-950">
-                    <Link href={caseStudy.href}>{caseStudy.title}</Link>
+                    <Link href={project.href}>{project.title}</Link>
                   </p>
                   <div className="mt-6 space-y-6 text-base text-neutral-600">
-                    {caseStudy.summary.map((paragraph) => (
+                    {project.summary.map((paragraph) => (
                       <p key={paragraph}>{paragraph}</p>
                     ))}
                   </div>
                   <div className="mt-8 flex">
                     <Button
-                      href={caseStudy.href}
-                      aria-label={`Read case study: ${caseStudy.client}`}
+                      href={project.href}
+                      aria-label={`View project: ${project.client}`}
                     >
-                      Read case study
+                      View project
                     </Button>
                   </div>
-                  {caseStudy.testimonial && (
+                  {project.testimonial && (
                     <Blockquote
-                      author={caseStudy.testimonial.author}
+                      author={project.testimonial.author}
                       className="mt-12"
                     >
-                      {caseStudy.testimonial.content}
+                      {project.testimonial.content}
                     </Blockquote>
                   )}
                 </div>
@@ -144,22 +144,20 @@ export const metadata: Metadata = {
 }
 
 export default async function Work() {
-  let caseStudies = await loadCaseStudies()
+  let projects = await loadCaseStudies()
 
   return (
     <RootLayout>
       <PageIntro
-        eyebrow="Our work"
-        title="Proven solutions for real-world problems."
+        eyebrow="Projects"
+        title="Proven digital solutions for real-world challenges."
       >
         <p>
-          We believe in efficiency and maximizing our resources to provide the
-          best value to our clients. The primary way we do that is by re-using
-          the same five projects we’ve been developing for the past decade.
+          We design and build custom web and mobile applications, digital platforms, and creative media solutions tailored to meet the needs of businesses and brands worldwide.
         </p>
       </PageIntro>
 
-      <CaseStudies caseStudies={caseStudies} />
+      <ProjectsList projects={projects} />
 
       <Testimonial
         className="mt-24 sm:mt-32 lg:mt-40"

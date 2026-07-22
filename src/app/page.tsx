@@ -51,7 +51,7 @@ function Clients() {
             className="mt-10 grid grid-cols-2 gap-x-8 gap-y-10 lg:grid-cols-4  place-items-center"
           >
             {clients.map(([client, logo]) => (
-              <li  key={client}>
+              <li key={client}>
                 <FadeIn>
                   <Image className="max-h-24 w-auto block" src={logo} alt={client} unoptimized />
                 </FadeIn>
@@ -64,34 +64,32 @@ function Clients() {
   )
 }
 
-function CaseStudies({
-  caseStudies,
+function ProjectsSection({
+  projects,
 }: {
-  caseStudies: Array<MDXEntry<CaseStudy>>
+  projects: Array<MDXEntry<CaseStudy>>
 }) {
   return (
     <>
       <SectionIntro
-        title="Harnessing technology for a brighter future"
+        title="Projects We Have Worked On"
         className="mt-24 sm:mt-32 lg:mt-40"
       >
         <p>
-          We believe technology is the answer to the world’s greatest
-          challenges. It’s also the cause, so we find ourselves in bit of a
-          catch 22 situation.
+          Discover some of the digital experiences, web solutions, and mobile applications we’ve built for our clients.
         </p>
       </SectionIntro>
       <Container className="mt-16">
         <FadeInStagger className="grid grid-cols-1 gap-8 lg:grid-cols-3">
-          {caseStudies.map((caseStudy) => (
-            <FadeIn key={caseStudy.href} className="flex">
+          {projects.map((project) => (
+            <FadeIn key={project.href} className="flex">
               <article className="relative flex w-full flex-col rounded-3xl p-6 ring-1 ring-neutral-950/5 transition hover:bg-neutral-50 sm:p-8">
                 <h3>
-                  <Link href={caseStudy.href}>
+                  <Link href={project.href}>
                     <span className="absolute inset-0 rounded-3xl" />
                     <Image
-                      src={caseStudy.logo}
-                      alt={caseStudy.client}
+                      src={project.logo}
+                      alt={project.client}
                       className="h-16 w-16"
                       unoptimized
                     />
@@ -99,21 +97,21 @@ function CaseStudies({
                 </h3>
                 <p className="mt-6 flex gap-x-2 text-sm text-neutral-950">
                   <time
-                    dateTime={caseStudy.date.split('-')[0]}
+                    dateTime={project.date.split('-')[0]}
                     className="font-semibold"
                   >
-                    {caseStudy.date.split('-')[0]}
+                    {project.date.split('-')[0]}
                   </time>
                   <span className="text-neutral-300" aria-hidden="true">
                     /
                   </span>
-                  <span>Case study</span>
+                  <span>Project</span>
                 </p>
                 <p className="mt-6 font-display text-2xl font-semibold text-neutral-950">
-                  {caseStudy.title}
+                  {project.title}
                 </p>
                 <p className="mt-4 text-base text-neutral-600">
-                  {caseStudy.description}
+                  {project.description}
                 </p>
               </article>
             </FadeIn>
@@ -173,7 +171,7 @@ export const metadata: Metadata = {
 }
 
 export default async function Home() {
-  let caseStudies = (await loadCaseStudies()).slice(0, 3)
+  let projects = (await loadCaseStudies()).slice(0, 3)
 
   return (
     <RootLayout>
@@ -190,7 +188,7 @@ export default async function Home() {
 
       <Clients />
 
-      {/* <CaseStudies caseStudies={caseStudies} /> */}
+      <ProjectsSection projects={projects} />
 
       <Services />
 
@@ -201,7 +199,7 @@ export default async function Home() {
         Delivered on time and met client expectations with a solution aligned to requirements. Reliable and professional.
       </Testimonial>
 
-      
+
 
       <ContactSection />
     </RootLayout>
