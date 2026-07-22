@@ -17,6 +17,9 @@ export const MDXComponents = {
     className,
     ...props
   }: React.ComponentPropsWithoutRef<typeof GrayscaleTransitionImage>) {
+    if (!props.src) {
+      return null
+    }
     return (
       <div
         className={clsx(

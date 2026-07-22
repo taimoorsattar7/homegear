@@ -74,8 +74,8 @@ export function Blockquote(
         image?: undefined
       }),
 ) {
-  if (props.image) {
-    return <BlockquoteWithImage {...props} />
+  if (props.image && props.image.src) {
+    return <BlockquoteWithImage {...(props as any)} />
   }
 
   return <BlockquoteWithoutImage {...props} />

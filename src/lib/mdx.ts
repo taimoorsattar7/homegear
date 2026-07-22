@@ -55,6 +55,17 @@ export function resolveAuthor(author: any) {
   }
 }
 
+import logoPhobia from '@/images/clients/phobia/logomark-dark.svg'
+import logoUnseal from '@/images/clients/unseal/logomark-dark.svg'
+import logoFamilyFund from '@/images/clients/family-fund/logomark-dark.svg'
+
+const clientLogos: Record<string, any> = {
+  Phobia: logoPhobia,
+  Unseal: logoUnseal,
+  FamilyFund: logoFamilyFund,
+  'Family Fund': logoFamilyFund,
+}
+
 async function loadEntries<T extends { date: string }>(
   directory: string,
   metaName: string,
@@ -64,12 +75,25 @@ async function loadEntries<T extends { date: string }>(
       (await glob('**/page.mdx', { cwd: `src/app/${directory}` })).map(
         async (filename) => {
           const mod = await import(`../app/${directory}/${filename}`)
-          let metadata = (mod.frontmatter || mod[metaName] || mod.article || mod.caseStudy || {}) as any
+          let metadata = {
+            ...(mod.caseStudy || {}),
+            ...(mod.article || {}),
+            ...(mod[metaName] || {}),
+            ...(mod.frontmatter || {}),
+          } as any
 
           if (directory === 'blog') {
             metadata = {
               ...metadata,
               author: resolveAuthor(metadata.author),
+            }
+          }
+
+          if (directory === 'work') {
+            const clientName = metadata.client || ''
+            metadata = {
+              ...metadata,
+              logo: metadata.logo || clientLogos[clientName] || logoPhobia,
             }
           }
 

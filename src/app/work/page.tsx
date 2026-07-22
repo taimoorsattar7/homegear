@@ -43,7 +43,7 @@ function ProjectsList({
                   <div className="sm:flex sm:items-center sm:gap-x-6 lg:block">
                     <Image
                       src={project.logo}
-                      alt=""
+                      alt={project.client}
                       className="h-16 w-16 flex-none"
                       unoptimized
                     />
