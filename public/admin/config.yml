@@ -18,6 +18,8 @@ collections:
     path: "{{slug}}/page"
     extension: "mdx"
     format: "frontmatter"
+    nested:
+      depth: 2
     create: true
     slug: "{{slug}}"
     fields:
@@ -42,7 +44,7 @@ collections:
               - { label: "Name", name: "name", widget: "string" }
               - { label: "Role", name: "role", widget: "string" }
           - { label: "Content", name: "content", widget: "text" }
-      - { label: "Project Content & Case Study (MDX)", name: "body", widget: "markdown" }
+      - { label: "Project Content (MDX)", name: "body", widget: "markdown" }
 
   - name: "blog"
     label: "Blog Articles"
@@ -51,6 +53,8 @@ collections:
     path: "{{slug}}/page"
     extension: "mdx"
     format: "frontmatter"
+    nested:
+      depth: 2
     create: true
     slug: "{{slug}}"
     fields:
@@ -72,22 +76,12 @@ collections:
 
   - name: "pages"
     label: "Website Pages Content"
+    format: "json"
     files:
-      - label: "Team Members"
-        name: "team_members"
-        file: "src/content/team.json"
-        fields:
-          - label: "Team List"
-            name: "team"
-            widget: "list"
-            fields:
-              - { label: "Name", name: "name", widget: "string" }
-              - { label: "Role", name: "role", widget: "string" }
-              - { label: "Image Path", name: "image", widget: "string" }
-
       - label: "Home Page"
         name: "home_page"
         file: "src/content/home.json"
+        format: "json"
         fields:
           - { label: "Hero Title", name: "heroTitle", widget: "string" }
           - { label: "Hero Subtitle", name: "heroDescription", widget: "text" }
@@ -99,6 +93,7 @@ collections:
       - label: "Our Work Page"
         name: "work_page"
         file: "src/content/work.json"
+        format: "json"
         fields:
           - { label: "Page Eyebrow", name: "eyebrow", widget: "string" }
           - { label: "Page Title", name: "title", widget: "string" }
@@ -108,6 +103,7 @@ collections:
       - label: "About Us Page"
         name: "about_page"
         file: "src/content/about.json"
+        format: "json"
         fields:
           - { label: "Page Eyebrow", name: "eyebrow", widget: "string" }
           - { label: "Page Title", name: "title", widget: "string" }
@@ -120,6 +116,7 @@ collections:
       - label: "Our Process Page"
         name: "process_page"
         file: "src/content/process.json"
+        format: "json"
         fields:
           - { label: "Page Eyebrow", name: "eyebrow", widget: "string" }
           - { label: "Page Title", name: "title", widget: "string" }
@@ -128,6 +125,7 @@ collections:
       - label: "Blog Page Header"
         name: "blog_page"
         file: "src/content/blog.json"
+        format: "json"
         fields:
           - { label: "Page Eyebrow", name: "eyebrow", widget: "string" }
           - { label: "Page Title", name: "title", widget: "string" }
@@ -136,6 +134,7 @@ collections:
       - label: "Company Info & Contact"
         name: "company_info"
         file: "src/content/company.json"
+        format: "json"
         fields:
           - { label: "Company Name", name: "name", widget: "string" }
           - { label: "Contact Email", name: "email", widget: "string" }
