@@ -5,7 +5,7 @@ import { motion, useReducedMotion } from 'framer-motion'
 
 const FadeInStaggerContext = createContext(false)
 
-const viewport = { once: true, margin: '0px 0px -200px' }
+const viewport = { once: true, margin: '0px 0px -50px' }
 
 export function FadeIn(
   props: React.ComponentPropsWithoutRef<typeof motion.div>,
@@ -16,10 +16,10 @@ export function FadeIn(
   return (
     <motion.div
       variants={{
-        hidden: { opacity: 0, y: shouldReduceMotion ? 0 : 24 },
-        visible: { opacity: 1, y: 0 },
+        hidden: { opacity: 0, y: shouldReduceMotion ? 0 : 20, scale: 0.98 },
+        visible: { opacity: 1, y: 0, scale: 1 },
       }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0.5, ease: [0.21, 0.47, 0.32, 0.98] }}
       {...(isInStaggerGroup
         ? {}
         : {
@@ -42,7 +42,7 @@ export function FadeInStagger({
         initial="hidden"
         whileInView="visible"
         viewport={viewport}
-        transition={{ staggerChildren: faster ? 0.12 : 0.2 }}
+        transition={{ staggerChildren: faster ? 0.1 : 0.18 }}
         {...props}
       />
     </FadeInStaggerContext.Provider>

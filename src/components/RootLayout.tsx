@@ -46,6 +46,14 @@ function MenuIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   )
 }
 
+const navLinks = [
+  { href: '/work', label: 'Our Work' },
+  { href: '/about', label: 'About Us' },
+  { href: '/process', label: 'Our Process' },
+  { href: '/blog', label: 'Blog' },
+  { href: '/admin', label: 'CMS Admin', isCms: true },
+]
+
 function Header({
   panelId,
   icon: Icon,
@@ -61,31 +69,54 @@ function Header({
   toggleRef: React.RefObject<HTMLButtonElement | null>
   invert?: boolean
 }) {
-  let { logoHovered, setLogoHovered } = useContext(RootLayoutContext)!
+  let { setLogoHovered } = useContext(RootLayoutContext)!
+  let pathname = usePathname()
 
   return (
     <Container>
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between gap-x-4">
         <Link
           href="/"
           aria-label="Home"
           onMouseEnter={() => setLogoHovered(true)}
           onMouseLeave={() => setLogoHovered(false)}
         >
-          {/* <Logomark
-            className="h-8 sm:hidden"
-            invert={invert}
-            filled={logoHovered}
-          />
-          <Logo
-            className="hidden h-8 sm:block"
-            invert={invert}
-            filled={logoHovered}
-          /> */}
-
           <Image className="max-w-3xs" src={TextIconBW} alt="Logo" />
         </Link>
-        <div className="flex items-center gap-x-8">
+
+        {/* Desktop Navbar for effortless site navigation */}
+        <nav className="hidden lg:flex items-center gap-x-1 rounded-full bg-neutral-950/5 p-1.5 ring-1 ring-neutral-950/10 backdrop-blur-md">
+          {navLinks.map((link) => {
+            const isActive =
+              pathname === link.href ||
+              (link.href !== '/' && pathname.startsWith(link.href))
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={clsx(
+                  'relative flex items-center rounded-full px-4 py-1.5 text-sm font-medium transition duration-200',
+                  isActive
+                    ? invert
+                      ? 'bg-white text-neutral-950 shadow-sm'
+                      : 'bg-neutral-950 text-white shadow-sm'
+                    : invert
+                      ? 'text-neutral-300 hover:bg-white/10 hover:text-white'
+                      : 'text-neutral-700 hover:bg-neutral-950/5 hover:text-neutral-950',
+                )}
+              >
+                {link.label}
+                {link.isCms && (
+                  <span className="ml-1.5 rounded-full bg-emerald-500/20 px-1.5 py-0.5 text-[10px] font-bold text-emerald-400 uppercase tracking-wider">
+                    CMS
+                  </span>
+                )}
+              </Link>
+            )
+          })}
+        </nav>
+
+        <div className="flex items-center gap-x-4 sm:gap-x-8">
           <Button href="/contact" invert={invert}>
             Contact us
           </Button>
@@ -96,7 +127,7 @@ function Header({
             aria-expanded={expanded ? 'true' : 'false'}
             aria-controls={panelId}
             className={clsx(
-              'group -m-2.5 rounded-full p-2.5 transition',
+              'group -m-2.5 rounded-full p-2.5 transition lg:hidden',
               invert ? 'hover:bg-white/10' : 'hover:bg-neutral-950/10',
             )}
             aria-label="Toggle navigation"
@@ -133,10 +164,17 @@ function NavigationItem({
   href: string
   children: React.ReactNode
 }) {
+  let pathname = usePathname()
+  let isActive =
+    pathname === href || (href !== '/' && pathname.startsWith(href))
+
   return (
     <Link
       href={href}
-      className="group relative isolate -mx-6 bg-neutral-950 px-6 py-10 even:mt-px sm:mx-0 sm:px-0 sm:py-16 sm:odd:pr-16 sm:even:mt-0 sm:even:border-l sm:even:border-neutral-800 sm:even:pl-16"
+      className={clsx(
+        'group relative isolate -mx-6 bg-neutral-950 px-6 py-10 even:mt-px sm:mx-0 sm:px-0 sm:py-16 sm:odd:pr-16 sm:even:mt-0 sm:even:border-l sm:even:border-neutral-800 sm:even:pl-16',
+        isActive && 'text-emerald-400 font-semibold',
+      )}
     >
       {children}
       <span className="absolute inset-y-0 -z-10 w-screen bg-neutral-900 opacity-0 transition group-odd:right-0 group-even:left-0 group-hover:opacity-100" />
@@ -154,6 +192,10 @@ function Navigation() {
       <NavigationRow>
         <NavigationItem href="/process">Our Process</NavigationItem>
         <NavigationItem href="/blog">Blog</NavigationItem>
+      </NavigationRow>
+      <NavigationRow>
+        <NavigationItem href="/admin">CMS Admin ⚙️</NavigationItem>
+        <NavigationItem href="/contact">Contact Us</NavigationItem>
       </NavigationRow>
     </nav>
   )

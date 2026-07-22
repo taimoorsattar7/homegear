@@ -83,14 +83,14 @@ function ProjectsSection({
         <FadeInStagger className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           {projects.map((project) => (
             <FadeIn key={project.href} className="flex">
-              <article className="relative flex w-full flex-col rounded-3xl p-6 ring-1 ring-neutral-950/5 transition hover:bg-neutral-50 sm:p-8">
+              <article className="group relative flex w-full flex-col rounded-3xl p-6 ring-1 ring-neutral-950/5 transition-all duration-300 hover:scale-[1.02] hover:bg-neutral-50 hover:shadow-xl hover:ring-neutral-950/20 sm:p-8">
                 <h3>
                   <Link href={project.href}>
                     <span className="absolute inset-0 rounded-3xl" />
                     <Image
                       src={project.logo}
                       alt={project.client}
-                      className="h-16 w-16"
+                      className="h-16 w-16 transition-transform duration-300 group-hover:scale-110"
                       unoptimized
                     />
                   </Link>
@@ -105,12 +105,12 @@ function ProjectsSection({
                   <span className="text-neutral-300" aria-hidden="true">
                     /
                   </span>
-                  <span>Project</span>
+                  <span className="font-medium text-emerald-600">Project</span>
                 </p>
-                <p className="mt-6 font-display text-2xl font-semibold text-neutral-950">
+                <p className="mt-6 font-display text-2xl font-semibold text-neutral-950 group-hover:text-neutral-950">
                   {project.title}
                 </p>
-                <p className="mt-4 text-base text-neutral-600">
+                <p className="mt-4 text-base text-neutral-600 leading-relaxed">
                   {project.description}
                 </p>
               </article>
@@ -170,10 +170,16 @@ export default async function Home() {
     <RootLayout>
       <Container className="mt-24 sm:mt-32 md:mt-56">
         <FadeIn className="max-w-3xl">
+          <div className="mb-6 inline-flex items-center gap-x-2 rounded-full bg-neutral-950/5 px-4 py-1.5 ring-1 ring-neutral-950/10 backdrop-blur-md">
+            <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+            <span className="text-xs font-semibold uppercase tracking-wider text-neutral-800">
+              Digital Studio & CMS Powered
+            </span>
+          </div>
           <h1 className="font-display text-5xl font-medium tracking-tight text-balance text-neutral-950 sm:text-7xl">
             {homeContent.heroTitle}
           </h1>
-          <p className="mt-6 text-xl text-neutral-600">
+          <p className="mt-6 text-xl text-neutral-600 leading-relaxed">
             {homeContent.heroDescription}
           </p>
         </FadeIn>
