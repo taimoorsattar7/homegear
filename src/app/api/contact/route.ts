@@ -1,0 +1,62 @@
+import { NextResponse } from 'next/server'
+
+const RESEND_API_KEY =
+  process.env.RESEND_API_KEY || 're_Da2WEJ3R_4QTREteNM5r8iARfjpB9cFQY'
+
+export async function POST(request: Request) {
+  try {
+    const body = await request.json()
+    const { name, email, company, phone, message } = body
+
+    if (!name || !email || !message) {
+      return NextResponse.json(
+        { error: 'Name, email, and message are required fields.' },
+        { status: 400 },
+      )
+    }
+
+    const res = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${RESEND_API_KEY}`,
+      },
+      body: JSON.stringify({
+        from: 'Homegear Contact <onboarding@resend.dev>',
+        to: ['info@homegear.dev'],
+        reply_to: email,
+        subject: `New Inquiry from ${name} via Homegear Website`,
+        html: `
+          <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #eee; rounded: 8px;">
+            <h2 style="color: #000; margin-bottom: 20px;">New Contact Inquiry - Homegear</h2>
+            <p><strong>Name:</strong> ${name}</p>
+            <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
+            <p><strong>Company:</strong> ${company || 'Not provided'}</p>
+            <p><strong>Phone:</strong> ${phone || 'Not provided'}</p>
+            <hr style="border: none; border-top: 1px solid #eee; margin: 20px 0;" />
+            <h3 style="color: #333;">Message:</h3>
+            <p style="white-space: pre-wrap; color: #555; background: #f9f9f9; padding: 15px; border-radius: 6px;">${message}</p>
+          </div>
+        `,
+      }),
+    })
+
+    const data = await res.json()
+
+    if (!res.ok) {
+      console.error('Resend API Error:', data)
+      return NextResponse.json(
+        { error: data.message || 'Failed to send email message.' },
+        { status: res.status },
+      )
+    }
+
+    return NextResponse.json({ success: true, data })
+  } catch (error: any) {
+    console.error('Contact API Error:', error)
+    return NextResponse.json(
+      { error: 'An unexpected error occurred while sending your message.' },
+      { status: 500 },
+    )
+  }
+}

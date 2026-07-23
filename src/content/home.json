@@ -1,26 +1,26 @@
 {
-  "heroTitle": "Building Digital Experiences That Drive Results.",
-  "heroDescription": "We design and develop high-quality digital solutions, including websites, mobile applications, and creative media, helping brands establish a strong and effective online presence.",
-  "clientsHeading": "We’ve worked with hundreds of amazing people",
-  "servicesEyebrow": "Services",
-  "servicesTitle": "We help you identify, explore and respond to new opportunities.",
-  "servicesDescription": "As long as you have the right idea, we can professionally guide you and bring it to life with quality, creativity, and attention to detail.",
+  "heroTitle": "Engineering High-Impact Web Apps & Mobile Products.",
+  "heroDescription": "We partner with ambitious companies to design and build scalable web applications, native mobile apps, and custom digital software that drive growth and user engagement.",
+  "clientsHeading": "Trusted by forward-thinking companies worldwide",
+  "servicesEyebrow": "Our Core Capabilities",
+  "servicesTitle": "End-to-end software development tailored to your business goals.",
+  "servicesDescription": "From strategic product design to scalable full-stack engineering, we transform ambitious ideas into world-class digital products with speed, security, and precision.",
   "servicesList": [
     {
-      "title": "Web development",
-      "description": "We create modern, responsive websites designed to deliver exceptional user experiences and strong visual impact."
+      "title": "Web Application Development",
+      "description": "We build fast, secure, and responsive web applications using modern frameworks, clean APIs, and optimized cloud architectures."
     },
     {
-      "title": "Application development",
-      "description": "Our team builds high-performance mobile applications with intuitive functionality and seamless user interaction across platforms."
+      "title": "Mobile App Development",
+      "description": "We craft high-performance iOS and Android applications with intuitive user flows, real-time sync, and native mobile capabilities."
     },
     {
-      "title": "Construction Design Solutions",
-      "description": "We provide digital design support for construction projects, including planning visuals, layouts, and structured design concepts."
+      "title": "UI/UX & Product Design",
+      "description": "We design elegant, accessible user interfaces and wireframes backed by deep user research and interactive design systems."
     },
     {
-      "title": "UI/UX Design & Layouts",
-      "description": "We specialize in crafting clean, user-friendly interfaces that enhance usability, improve engagement, and align perfectly with your brand."
+      "title": "Custom Software & Cloud Architecture",
+      "description": "We engineer robust custom software, microservices, and backend APIs built for scale, reliability, and enterprise compliance."
     }
   ]
 }

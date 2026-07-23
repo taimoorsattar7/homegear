@@ -51,6 +51,7 @@ const navLinks = [
   { href: '/about', label: 'About Us' },
   { href: '/process', label: 'Our Process' },
   { href: '/blog', label: 'Blog' },
+  { href: '/contact', label: 'Contact Us' },
 ]
 
 function Header({
@@ -80,7 +81,7 @@ function Header({
           onMouseEnter={() => setLogoHovered(true)}
           onMouseLeave={() => setLogoHovered(false)}
         >
-          <Image className="max-w-3xs" src={TextIconBW} alt="Logo" />
+          <Image className="w-28 sm:w-36 md:w-44 h-auto object-contain max-w-full" src={TextIconBW} alt="Logo" />
         </Link>
 
         {/* Desktop Navbar for effortless site navigation */}
@@ -111,9 +112,6 @@ function Header({
         </nav>
 
         <div className="flex items-center gap-x-4 sm:gap-x-8">
-          <Button href="/contact" invert={invert}>
-            Contact us
-          </Button>
           <button
             ref={toggleRef}
             type="button"
@@ -178,7 +176,7 @@ function NavigationItem({
 
 function Navigation() {
   return (
-    <nav className="mt-px font-display text-5xl font-medium tracking-tight text-white">
+    <nav className="mt-px font-display text-4xl sm:text-5xl font-medium tracking-tight text-white">
       <NavigationRow>
         <NavigationItem href="/work">Our Work</NavigationItem>
         <NavigationItem href="/about">About Us</NavigationItem>
@@ -186,6 +184,9 @@ function Navigation() {
       <NavigationRow>
         <NavigationItem href="/process">Our Process</NavigationItem>
         <NavigationItem href="/blog">Blog</NavigationItem>
+      </NavigationRow>
+      <NavigationRow>
+        <NavigationItem href="/contact">Contact Us</NavigationItem>
       </NavigationRow>
     </nav>
   )

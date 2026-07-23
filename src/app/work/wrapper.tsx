@@ -65,6 +65,33 @@ export default async function CaseStudyLayout({
             <MDXComponents.wrapper>{children}</MDXComponents.wrapper>
           </FadeIn>
         </Container>
+
+        {caseStudy.snapshots && caseStudy.snapshots.length > 0 && (
+          <Container className="mt-16 sm:mt-24">
+            <FadeIn>
+              <h2 className="font-display text-2xl font-semibold text-neutral-950">
+                Project Snapshots & Showcase
+              </h2>
+              <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {caseStudy.snapshots.map((snap: any, index: number) => {
+                  const src = typeof snap === 'string' ? snap : snap.image || snap.src || snap
+                  return (
+                    <div
+                      key={index}
+                      className="overflow-hidden rounded-3xl border border-neutral-200 bg-neutral-100 shadow-sm transition hover:shadow-md"
+                    >
+                      <img
+                        src={typeof src === 'string' ? src : src.src}
+                        alt={`${caseStudy.client} snapshot ${index + 1}`}
+                        className="h-full w-full object-cover"
+                      />
+                    </div>
+                  )
+                })}
+              </div>
+            </FadeIn>
+          </Container>
+        )}
       </article>
 
       {moreCaseStudies.length > 0 && (

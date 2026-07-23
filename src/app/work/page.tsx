@@ -28,67 +28,91 @@ function ProjectsList({
   projects: Array<MDXEntry<CaseStudy>>
 }) {
   return (
-    <Container className="mt-40">
+    <Container className="mt-24 sm:mt-32 lg:mt-40">
       <FadeIn>
-        <h2 className="font-display text-2xl font-semibold text-neutral-950">
-          Projects We Have Worked On
-        </h2>
+        <div className="flex items-center justify-between border-b border-neutral-200 pb-6">
+          <h2 className="font-display text-2xl font-semibold text-neutral-950 sm:text-3xl">
+            Selected Case Studies & Featured Work
+          </h2>
+          <span className="text-sm font-medium text-neutral-500">
+            {projects.length} Case Studies
+          </span>
+        </div>
       </FadeIn>
-      <div className="mt-10 space-y-20 sm:space-y-24 lg:space-y-32">
+      <div className="mt-12 space-y-16 sm:space-y-20">
         {projects.map((project) => (
           <FadeIn key={project.client}>
-            <article>
-              <Border className="grid grid-cols-3 gap-x-8 gap-y-8 pt-16">
-                <div className="col-span-full sm:flex sm:items-center sm:justify-between sm:gap-x-8 lg:col-span-1 lg:block">
-                  <div className="sm:flex sm:items-center sm:gap-x-6 lg:block">
-                    <Image
-                      src={project.logo}
-                      alt={project.client}
-                      className="h-16 w-16 flex-none"
-                      unoptimized
-                    />
-                    <h3 className="mt-6 text-sm font-semibold text-neutral-950 sm:mt-0 lg:mt-8">
-                      {project.client}
-                    </h3>
-                  </div>
-                  <div className="mt-1 flex gap-x-4 sm:mt-0 lg:block">
-                    <p className="text-sm tracking-tight text-neutral-950 after:ml-4 after:font-semibold after:text-neutral-300 after:content-['/'] lg:mt-2 lg:after:hidden">
-                      {project.service}
-                    </p>
-                    <p className="text-sm text-neutral-950 lg:mt-2">
+            <article className="group relative rounded-3xl border border-neutral-200/80 bg-neutral-50/50 p-6 sm:p-10 transition-all duration-300 hover:border-neutral-400 hover:bg-white hover:shadow-xl">
+              <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-center">
+                <div className="lg:col-span-4 flex flex-col justify-between">
+                  <div>
+                    <div className="flex items-center gap-x-4">
+                      <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white p-3 shadow-xs border border-neutral-200/60">
+                        <Image
+                          src={project.logo}
+                          alt={project.client}
+                          className="h-full w-full object-contain"
+                          unoptimized
+                        />
+                      </div>
+                      <div>
+                        <h3 className="font-display text-lg font-semibold text-neutral-950">
+                          {project.client}
+                        </h3>
+                        <span className="inline-flex items-center rounded-full bg-neutral-950/5 px-2.5 py-0.5 text-xs font-medium text-neutral-700 mt-1">
+                          {project.service}
+                        </span>
+                      </div>
+                    </div>
+                    
+                    <div className="mt-6 flex items-center gap-x-3 text-xs font-semibold uppercase tracking-wider text-neutral-500">
+                      <span>Completed</span>
+                      <span>•</span>
                       <time dateTime={project.date}>
                         {formatDate(project.date)}
                       </time>
-                    </p>
+                    </div>
+                  </div>
+
+                  <div className="mt-8 hidden lg:block">
+                    <Button href={project.href} className="w-full justify-center py-3 text-sm font-medium shadow-xs">
+                      View Full Case Study →
+                    </Button>
                   </div>
                 </div>
-                <div className="col-span-full lg:col-span-2 lg:max-w-2xl">
-                  <p className="font-display text-4xl font-medium text-neutral-950">
-                    <Link href={project.href}>{project.title}</Link>
-                  </p>
-                  <div className="mt-6 space-y-6 text-base text-neutral-600">
+
+                <div className="lg:col-span-8 lg:border-l lg:border-neutral-200/80 lg:pl-10">
+                  <h3 className="font-display text-2xl font-semibold text-neutral-950 sm:text-3xl group-hover:text-neutral-900">
+                    <Link href={project.href}>
+                      <span className="absolute inset-0 rounded-3xl lg:hidden" />
+                      {project.title}
+                    </Link>
+                  </h3>
+                  
+                  <div className="mt-4 space-y-4 text-base text-neutral-600 leading-relaxed">
                     {project.summary.map((paragraph) => (
                       <p key={paragraph}>{paragraph}</p>
                     ))}
                   </div>
-                  <div className="mt-8 flex">
-                    <Button
-                      href={project.href}
-                      aria-label={`View project: ${project.client}`}
-                    >
-                      View project
+
+                  {project.testimonial && (
+                    <div className="mt-8 rounded-2xl bg-white p-6 border border-neutral-200/70 shadow-2xs">
+                      <p className="text-sm italic text-neutral-700">
+                        “{project.testimonial.content}”
+                      </p>
+                      <p className="mt-3 text-xs font-semibold text-neutral-950">
+                        — {project.testimonial.author.name}, <span className="font-normal text-neutral-500">{project.testimonial.author.role}</span>
+                      </p>
+                    </div>
+                  )}
+
+                  <div className="mt-8 lg:hidden">
+                    <Button href={project.href} className="w-full justify-center py-3 text-sm font-medium">
+                      View Full Case Study →
                     </Button>
                   </div>
-                  {project.testimonial && (
-                    <Blockquote
-                      author={project.testimonial.author}
-                      className="mt-12"
-                    >
-                      {project.testimonial.content}
-                    </Blockquote>
-                  )}
                 </div>
-              </Border>
+              </div>
             </article>
           </FadeIn>
         ))}
@@ -113,21 +137,23 @@ function Clients() {
     <Container className="mt-24 sm:mt-32 lg:mt-40">
       <FadeIn>
         <h2 className="font-display text-2xl font-semibold text-neutral-950">
-          You’re in good company
+          Trusted by Innovative Companies
         </h2>
+        <p className="mt-2 text-base text-neutral-600 max-w-2xl">
+          We’ve collaborated with startups and established enterprises across industries to engineer custom web software and digital tools.
+        </p>
       </FadeIn>
       <FadeInStagger className="mt-10" faster>
-        <Border as={FadeIn} />
         <ul
           role="list"
-          className="grid grid-cols-2 gap-x-8 gap-y-12 sm:grid-cols-3 lg:grid-cols-4"
+          className="grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-4"
         >
           {clients.map(([client, logo]) => (
             <li key={client} className="group">
-              <FadeIn className="overflow-hidden">
-                <Border className="pt-12 group-nth-[-n+2]:-mt-px sm:group-nth-3:-mt-px lg:group-nth-4:-mt-px">
-                  <Image src={logo} alt={client} unoptimized />
-                </Border>
+              <FadeIn>
+                <div className="flex h-24 items-center justify-center rounded-2xl border border-neutral-200/80 bg-neutral-50/50 p-6 transition-all duration-300 group-hover:border-neutral-400 group-hover:bg-white group-hover:shadow-md">
+                  <Image src={logo} alt={client} className="max-h-12 w-auto object-contain" unoptimized />
+                </div>
               </FadeIn>
             </li>
           ))}
@@ -140,7 +166,7 @@ function Clients() {
 export const metadata: Metadata = {
   title: 'Our Work',
   description:
-    'We believe in efficiency and maximizing our resources to provide the best value to our clients.',
+    'Explore our portfolio of custom web applications, mobile platforms, and software solutions built for our clients.',
 }
 
 import workContent from '@/content/work.json'
@@ -163,8 +189,7 @@ export default async function Work() {
         className="mt-24 sm:mt-32 lg:mt-40"
         client={{ name: 'Mail Smirk', logo: logoMailSmirk }}
       >
-        We approached <em>Studio</em> because we loved their past work. They
-        delivered something remarkably similar in record time.
+        The Homegear team worked seamlessly alongside our internal developers. They brought deep technical clarity, structured code quality, and shipped our core web platform ahead of schedule.
       </Testimonial>
 
       <Clients />

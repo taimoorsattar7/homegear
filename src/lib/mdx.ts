@@ -29,12 +29,14 @@ export function resolveAuthor(author: any) {
       return {
         name: found.name,
         role: found.role,
+        bio: (found as any).bio || '',
         image: { src: teamAvatars[found.name] || imageTaimoor },
       }
     }
     return {
       name: author,
       role: 'Team Member',
+      bio: '',
       image: { src: imageTaimoor },
     }
   }
@@ -44,13 +46,15 @@ export function resolveAuthor(author: any) {
     return {
       name: author.name || 'Taimoor Sattar',
       role: author.role || 'Team Member',
+      bio: author.bio || '',
       image: typeof avatar === 'object' && avatar.src ? avatar : { src: avatar },
     }
   }
 
   return {
     name: 'Taimoor Sattar',
-    role: 'Senior Project Manager',
+    role: 'Senior Project Manager / CEO',
+    bio: 'Leads engineering and product direction at Homegear, ensuring seamless software delivery and strategic execution.',
     image: { src: imageTaimoor },
   }
 }
@@ -119,6 +123,7 @@ export interface Article {
   author: {
     name: string
     role: string
+    bio?: string
     image: ImagePropsWithOptionalAlt
   }
 }
@@ -131,6 +136,7 @@ export interface CaseStudy {
   summary: Array<string>
   logo: ImageProps['src']
   image: ImagePropsWithOptionalAlt
+  snapshots?: Array<any>
   service: string
   testimonial: {
     author: {

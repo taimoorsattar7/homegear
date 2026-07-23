@@ -14,6 +14,7 @@ collections:
   - name: "projects"
     label: "Projects We Have Worked On"
     label_singular: "Project"
+    icon: "work"
     folder: "src/app/work"
     path: "{{slug}}/page"
     extension: "mdx"
@@ -28,6 +29,11 @@ collections:
       - { label: "Date (YYYY-MM)", name: "date", widget: "string" }
       - { label: "Service / Category", name: "service", widget: "string" }
       - { label: "Short Description", name: "description", widget: "text" }
+      - label: "Project Snapshots / Screenshots"
+        name: "snapshots"
+        widget: "list"
+        required: false
+        field: { label: "Snapshot Image", name: "image", widget: "image" }
       - label: "Summary Paragraphs"
         name: "summary"
         widget: "list"
@@ -49,6 +55,7 @@ collections:
   - name: "blog"
     label: "Blog Articles"
     label_singular: "Article"
+    icon: "article"
     folder: "src/app/blog"
     path: "{{slug}}/page"
     extension: "mdx"
@@ -76,10 +83,12 @@ collections:
 
   - name: "pages"
     label: "Website Pages Content"
+    icon: "folder"
     format: "json"
     files:
       - label: "Home Page"
         name: "home_page"
+        icon: "home"
         file: "src/content/home.json"
         format: "json"
         fields:
@@ -98,6 +107,7 @@ collections:
 
       - label: "Our Work Page"
         name: "work_page"
+        icon: "work"
         file: "src/content/work.json"
         format: "json"
         fields:
@@ -108,6 +118,7 @@ collections:
 
       - label: "About Us Page"
         name: "about_page"
+        icon: "info"
         file: "src/content/about.json"
         format: "json"
         fields:
@@ -127,6 +138,7 @@ collections:
 
       - label: "Our Process Page"
         name: "process_page"
+        icon: "settings"
         file: "src/content/process.json"
         format: "json"
         fields:
@@ -151,6 +163,7 @@ collections:
 
       - label: "Blog Page Header"
         name: "blog_page"
+        icon: "article"
         file: "src/content/blog.json"
         format: "json"
         fields:
@@ -160,6 +173,7 @@ collections:
 
       - label: "Team Members"
         name: "team_members"
+        icon: "people"
         file: "src/content/team.json"
         format: "json"
         fields:
@@ -170,9 +184,11 @@ collections:
               - { label: "Name", name: "name", widget: "string" }
               - { label: "Role", name: "role", widget: "string" }
               - { label: "Image Path", name: "image", widget: "string" }
+              - { label: "Bio", name: "bio", widget: "text", required: false }
 
       - label: "Company Info & Contact"
         name: "company_info"
+        icon: "mail"
         file: "src/content/company.json"
         format: "json"
         fields:
