@@ -2,29 +2,35 @@
   "heroTitle": "Engineering High-Impact Web Apps & Mobile Products.",
   "heroDescription": "We partner with ambitious companies to design and build scalable web applications, native mobile apps, and custom digital software that drive growth and user engagement.",
   "clientsHeading": "Trusted by forward-thinking companies worldwide",
-  "clientsList": [
-    {
-      "name": "Cles",
-      "logo": "cles_logo.png",
-      "description": "Leading digital platform for modern management.",
-      "website": "https://cles.dev"
-    },
-    {
-      "name": "CMB",
-      "logo": "cmb_logo.png",
-      "description": "Enterprise cloud services and data analytics.",
-      "website": "https://cmb.dev"
-    },
-    {
-      "name": "Awnas",
-      "logo": "awnas_logo.png",
-      "description": "Fintech and scalable e-commerce infrastructure.",
-      "website": "https://awnas.dev"
-    }
-  ],
   "servicesEyebrow": "Our Core Capabilities",
   "servicesTitle": "End-to-end software development tailored to your business goals.",
   "servicesDescription": "From strategic product design to scalable full-stack engineering, we transform ambitious ideas into world-class digital products with speed, security, and precision.",
+  "clientsList": [
+    {
+      "name": "Right cam",
+      "logo": "@/images/icon-bg.svg",
+      "description": "",
+      "website": ""
+    },
+    {
+      "name": "Cles",
+      "logo": "@/images/clients/cles_c_left.png",
+      "description": "",
+      "website": ""
+    },
+    {
+      "name": "CMB",
+      "logo": "@/images/clients/company_logo.png",
+      "description": "",
+      "website": ""
+    },
+    {
+      "name": "Awnas",
+      "logo": "@/images/clients/awnaslogo.png",
+      "description": "",
+      "website": ""
+    }
+  ],
   "servicesList": [
     {
       "title": "Web Application Development",
