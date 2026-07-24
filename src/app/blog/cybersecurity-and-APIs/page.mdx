@@ -1,8 +1,8 @@
 ---
-title: "Cybersecurity and APIs: Securing the Backbone of Modern Applications"
-date: "2022-12-01"
-description: "Why API security is critical for modern web and mobile applications, common vulnerabilities like broken authorization and rate limits, and actionable engineering practices to secure your infrastructure."
-author: "Angela Fisher"
+title: 'Cybersecurity and APIs: Securing the Backbone of Modern Applications'
+date: 2022-12-01
+description: Why API security is critical for modern web and mobile applications, common vulnerabilities like broken authorization and rate limits, and actionable engineering practices to secure your infrastructure.
+author: Taimoor Sattar
 ---
 
 # Cybersecurity and APIs: Securing the Backbone of Modern Applications
@@ -11,7 +11,7 @@ Modern web and mobile applications rarely exist in isolation. Behind almost ever
 
 Because APIs expose direct endpoints to external traffic, they have also become a primary target for malicious actors. Securing APIs isn't just about putting a firewall in front of a server; it requires intentional engineering across authentication, access control, input validation, and rate management.
 
----
+***
 
 ## Why API Vulnerabilities Modern Applications
 
@@ -21,7 +21,7 @@ With single-page web applications (SPAs) and mobile applications, the backend ty
 
 If an API endpoint lacks explicit server-side validation or authorization checks, an attacker can bypass the UI entirely and send modified HTTP requests directly to your backend.
 
----
+***
 
 ## 5 Critical API Vulnerabilities & Practical Solutions
 
@@ -32,7 +32,7 @@ BOLA occurs when an API endpoint returns data for an object based on a user-supp
 * **The Problem:** An user logged in as User A makes a request to GET `/api/invoices/1042`. By changing the ID in the request to GET `/api/invoices/1043`, they can view another customer's invoice.
 * **The Solution:** Never rely solely on authentication tokens to grant resource access. Always enforce explicit ownership checks at the database layer (e.g., querying for invoices where `invoice_id = 1043 AND tenant_id = current_user.tenant_id`).
 
----
+***
 
 ### 2. Broken User Authentication
 
@@ -41,7 +41,7 @@ Weak authentication logic allows attackers to compromise credentials, hijack act
 * **The Problem:** Storing plain JWT tokens in local storage without expiration policies, failing to invalidate tokens upon logout, or allowing weak password brute-forcing.
 * **The Solution:** Implement standard authentication mechanisms like OAuth 2.0 with short-lived access tokens and secure HTTP-only cookies for refresh tokens. Enforce multi-factor authentication (MFA) for sensitive administrative endpoints.
 
----
+***
 
 ### 3. Excessive Data Exposure & Mass Assignment
 
@@ -50,7 +50,7 @@ APIs often rely on generic object serializers that expose more internal fields t
 * **The Problem:** An endpoint GET `/api/user/me` returns the full database record including password hashes, internal roles, and internal flags. Alternatively, a PUT endpoint accepts arbitrary JSON properties that overwrite administrative fields (such as `"is_admin": true`).
 * **The Solution:** Explicitly define Data Transfer Objects (DTOs) for both request payloads and response outputs. Strip unneeded internal properties before serializing JSON responses.
 
----
+***
 
 ### 4. Lack of Rate Limiting & Resource Throttling
 
@@ -59,7 +59,7 @@ Without strict request limits, APIs are vulnerable to Denial of Service (DoS) at
 * **The Problem:** An attacker scripts thousands of concurrent requests per second against an expensive API search endpoint, consuming high CPU/memory and crashing the database.
 * **The Solution:** Configure rate-limiting middleware at your API gateway or application layer (e.g., using Redis token-buckets). Limit requests based on authenticated user IDs and IP addresses, returning a standard `429 Too Many Requests` status code when exceeded.
 
----
+***
 
 ### 5. Improper Input Validation & SQL/NoSQL Injection
 
@@ -68,7 +68,7 @@ Failing to validate incoming payload formats allows malformed or malicious paylo
 * **The Problem:** Unsanitized search fields or JSON inputs embedded directly into raw SQL or database queries.
 * **The Solution:** Use parameterized queries, Object-Relational Mappers (ORMs), and request schema validation libraries (such as Zod or Joi) to strictly type and sanitize incoming payload fields before processing.
 
----
+***
 
 ## Building a Security-First Development Process
 
@@ -79,10 +79,8 @@ Securing APIs requires a continuous engineering discipline integrated into your 
 3. **Automate Security Scanning in CI/CD:** Run static analysis security testing (SAST) and dependency vulnerability checks during your automated build pipeline.
 4. **Comprehensive Audit Logging:** Log API authentication events, authorization failures, and administrative actions so security incidents can be investigated promptly.
 
----
+***
 
 ## Conclusion
 
 API security cannot be an afterthought bolted on right before release. By treating security as a fundamental pillar of API design—from establishing explicit authorization checks to implementing strict schema validation—you protect your users' data and ensure your software infrastructure remains resilient against evolving threats.
-
-
