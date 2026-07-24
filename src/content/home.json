@@ -2,40 +2,40 @@
   "heroTitle": "Engineering High-Impact Web Apps & Mobile Products.",
   "heroDescription": "We partner with ambitious companies to design and build scalable web applications, native mobile apps, and custom digital software that drive growth and user engagement.",
   "clientsHeading": "Trusted by forward-thinking companies worldwide",
+  "servicesEyebrow": "Our Core Capabilities",
+  "servicesTitle": "End-to-end software development tailored to your business goals.",
+  "servicesDescription": "From strategic product design to scalable full-stack engineering, we transform ambitious ideas into world-class digital products with speed, security, and precision.",
   "clientsList": [
     {
       "name": "RightCam",
-      "logo": "icon-bg.svg",
+      "logo": "@/images/icon-bg.svg",
       "description": "Visual documentation and management tool.",
       "website": "https://rightcam.com"
     },
     {
       "name": "Cles",
-      "logo": "cles_c_left.png",
+      "logo": "@/images/clients/cles_c_left.png",
       "description": "Leading digital platform for modern management.",
-      "website": "https://cles.dev"
+      "website": ""
     },
     {
       "name": "CMB",
-      "logo": "company_logo.png",
+      "logo": "@/images/clients/company_logo.png",
       "description": "Enterprise cloud services and data analytics.",
-      "website": "https://cmb.dev"
+      "website": ""
     },
     {
       "name": "Awnas",
-      "logo": "awnaslogo.png",
+      "logo": "@/images/clients/awnaslogo.png",
       "description": "Fintech and scalable e-commerce infrastructure.",
-      "website": "https://awnas.dev"
+      "website": ""
     }
   ],
   "testimonial": {
-    "quote": "The Homegear team worked seamlessly alongside our internal developers. They brought deep technical clarity, structured code quality, and shipped our core web platform ahead of schedule.",
-    "clientName": "Mail Smirk",
-    "clientLogo": ""
+    "quote": "Delivered on time and met client expectations with a solution aligned to requirements. Reliable and professional.",
+    "clientName": "cleseconomia",
+    "clientLogo": "@/images/clients/cles_c_left.png"
   },
-  "servicesEyebrow": "Our Core Capabilities",
-  "servicesTitle": "End-to-end software development tailored to your business goals.",
-  "servicesDescription": "From strategic product design to scalable full-stack engineering, we transform ambitious ideas into world-class digital products with speed, security, and precision.",
   "servicesList": [
     {
       "title": "Web Application Development",
