@@ -23,11 +23,12 @@ export async function POST(request: Request) {
     }
 
     const fromAddress = process.env.RESEND_FROM_EMAIL || 'Homegear Contact <onboarding@resend.dev>'
-    const toAddress = process.env.RESEND_TO_EMAIL || 'taimoorsattar7@gmail.com'
+    const toAddress = process.env.RESEND_TO_EMAIL || 'info@homegear.dev'
 
-    const sendEmailPayload = (from: string, to: string) => ({
-      from,
-      to: [to],
+    // 1. Inquiry email payload (sent to info@homegear.dev or RESEND_TO_EMAIL)
+    const inquiryPayload = {
+      from: fromAddress,
+      to: [toAddress],
       reply_to: email,
       subject: `New Inquiry from ${name} via Homegear Website`,
       html: `
@@ -42,7 +43,25 @@ export async function POST(request: Request) {
           <p style="white-space: pre-wrap; color: #555; background: #f9f9f9; padding: 15px; border-radius: 6px;">${message}</p>
         </div>
       `,
-    })
+    }
+
+    // 2. Thank You auto-response payload (sent to the user's contact field email)
+    const thankYouPayload = {
+      from: fromAddress,
+      to: [email],
+      subject: `Thank you for your inquiry - Homegear`,
+      html: `
+        <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #eee; border-radius: 8px;">
+          <h2 style="color: #000; margin-bottom: 16px;">Thank You for Contacting Homegear</h2>
+          <p style="color: #333; font-size: 16px; line-height: 1.5;">Hi ${name},</p>
+          <p style="color: #555; font-size: 15px; line-height: 1.5;">
+            Thank you for reaching out to us! We have received your inquiry and our team will contact you shortly about your inquiry.
+          </p>
+          <hr style="border: none; border-top: 1px solid #eee; margin: 20px 0;" />
+          <p style="color: #888; font-size: 13px; margin: 0;">Best regards,<br /><strong>Homegear Team</strong><br /><a href="https://homegear.dev" style="color: #000; text-decoration: none;">info@homegear.dev</a></p>
+        </div>
+      `,
+    }
 
     let res = await fetch('https://api.resend.com/emails', {
       method: 'POST',
@@ -50,25 +69,28 @@ export async function POST(request: Request) {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${RESEND_API_KEY}`,
       },
-      body: JSON.stringify(sendEmailPayload(fromAddress, toAddress)),
+      body: JSON.stringify(inquiryPayload),
     })
 
     let data = await res.json()
 
-    // If initial attempt failed due to unverified domain or restricted recipient in Resend test mode, retry with safe onboarding defaults
+    // If initial attempt failed due to unverified domain or restricted recipient in Resend test mode, retry with fallback
     if (!res.ok && (
       data.message?.includes('testing emails') ||
       data.message?.includes('verify a domain') ||
       data.name === 'validation_error'
     )) {
-      console.warn('Resend domain not verified yet. Automatically falling back to test sandbox (onboarding@resend.dev -> taimoorsattar7@gmail.com)...')
+      console.warn('Resend domain not verified yet. Falling back to default onboarding sender...')
       res = await fetch('https://api.resend.com/emails', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${RESEND_API_KEY}`,
         },
-        body: JSON.stringify(sendEmailPayload('Homegear Contact <onboarding@resend.dev>', 'taimoorsattar7@gmail.com')),
+        body: JSON.stringify({
+          ...inquiryPayload,
+          from: 'Homegear Contact <onboarding@resend.dev>',
+        }),
       })
       data = await res.json()
     }
@@ -79,6 +101,24 @@ export async function POST(request: Request) {
         { error: data.message || 'Failed to send email message.' },
         { status: res.status },
       )
+    }
+
+    // Send thank you email to the user email provided in contact form
+    try {
+      const thankYouRes = await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${RESEND_API_KEY}`,
+        },
+        body: JSON.stringify(thankYouPayload),
+      })
+      if (!thankYouRes.ok) {
+        const thankYouData = await thankYouRes.json()
+        console.warn('Resend Thank You Email warning:', thankYouData)
+      }
+    } catch (thankYouErr) {
+      console.warn('Error sending thank you email:', thankYouErr)
     }
 
     return NextResponse.json({ success: true, data })
