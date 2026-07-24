@@ -30,7 +30,7 @@ export async function POST(request: Request) {
       },
       body: JSON.stringify({
         from: 'Homegear Contact <onboarding@resend.dev>',
-        to: ['info@homegear.dev'],
+        to: [process.env.RESEND_TO_EMAIL || 'info@homegear.dev'],
         reply_to: email,
         subject: `New Inquiry from ${name} via Homegear Website`,
         html: `

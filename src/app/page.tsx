@@ -17,84 +17,8 @@ import imageLaptop from '@/images/laptop.jpg'
 import { type Article, type CaseStudy, type MDXEntry, loadArticles, loadCaseStudies } from '@/lib/mdx'
 import { formatDate } from '@/lib/formatDate'
 import { RootLayout } from '@/components/RootLayout'
+import { Clients } from '@/components/Clients'
 import homeContent from '@/content/home.json'
-
-const defaultClientLogos: Record<string, any> = {
-  Cles: logoCles,
-  CMB: logoCMB,
-  Awnas: logoAwnas,
-}
-
-function Clients() {
-  const clientList = (homeContent as any).clientsList || [
-    { name: 'Cles', logo: logoCles },
-    { name: 'CMB', logo: logoCMB },
-    { name: 'Awnas', logo: logoAwnas },
-  ]
-
-  return (
-    <div className="mt-24 rounded-4xl bg-neutral-950 py-20 sm:mt-32 sm:py-32 lg:mt-56">
-      <Container>
-        <FadeIn className="flex items-center gap-x-8">
-          <h2 className="text-center font-display text-sm font-semibold tracking-wider text-white sm:text-left">
-            {homeContent.clientsHeading}
-          </h2>
-          <div className="h-px flex-auto bg-neutral-800" />
-        </FadeIn>
-        <FadeInStagger faster>
-          <ul
-            role="list"
-            className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 place-items-stretch"
-          >
-            {clientList.map((clientItem: any) => {
-              const name = typeof clientItem === 'string' ? clientItem : clientItem.name
-              const logo = typeof clientItem === 'object' && clientItem.logo ? clientItem.logo : defaultClientLogos[name]
-              const website = typeof clientItem === 'object' ? clientItem.website : ''
-              const description = typeof clientItem === 'object' ? clientItem.description : ''
-              let logoSrc = typeof logo === 'string' ? (logo.startsWith('/') || logo.startsWith('http') || logo.startsWith('./') ? logo : `/images/uploads/${logo}`) : logo?.src || logo
-
-              const content = (
-                <div className="group relative flex flex-col items-center text-center p-6 rounded-3xl bg-neutral-900/60 border border-neutral-800 transition duration-300 hover:border-neutral-700 hover:bg-neutral-900 h-full">
-                  {typeof logoSrc === 'string' ? (
-                    <img className="max-h-16 w-auto block object-contain filter invert opacity-90 transition duration-300 group-hover:opacity-100 group-hover:scale-105" src={logoSrc} alt={name} />
-                  ) : (
-                    <Image className="max-h-16 w-auto block object-contain filter invert opacity-90 transition duration-300 group-hover:opacity-100 group-hover:scale-105" src={logoSrc} alt={name} unoptimized />
-                  )}
-                  {description && (
-                    <p className="mt-3 text-xs text-neutral-400 max-w-xs leading-relaxed">
-                      {description}
-                    </p>
-                  )}
-                  {website && (
-                    <div className="mt-4">
-                      <span className="inline-flex items-center gap-1 text-xs font-medium text-neutral-300 group-hover:text-white group-hover:underline">
-                        Visit Website &rarr;
-                      </span>
-                    </div>
-                  )}
-                </div>
-              )
-
-              return (
-                <li key={name}>
-                  <FadeIn className="h-full">
-                    {website ? (
-                      <a href={website.startsWith('http') ? website : `https://${website}`} target="_blank" rel="noopener noreferrer" className="block h-full">
-                        {content}
-                      </a>
-                    ) : (
-                      content
-                    )}
-                  </FadeIn>
-                </li>
-              )
-            })}
-          </ul>
-        </FadeInStagger>
-      </Container>
-    </div>
-  )
-}
 
 function ProjectsSection({
   projects,

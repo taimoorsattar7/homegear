@@ -28,9 +28,20 @@ export function resolveAuthor(author: any) {
       (m: any) => m.name && m.name.toLowerCase() === author.toLowerCase(),
     )
     if (found) {
-      let authorImg = found.image && found.image !== 'na'
-        ? (found.image.startsWith('/') || found.image.startsWith('http') || found.image.startsWith('./') ? found.image : `/images/uploads/${found.image}`)
-        : (teamAvatars[found.name] || imageTaimoor)
+      let authorImg: any = null
+      if (found.image && found.image !== 'na' && typeof found.image === 'string') {
+        if (found.image.startsWith('@/')) {
+          authorImg = teamAvatars[found.name] || imageTaimoor
+        } else {
+          authorImg = found.image.startsWith('/') || found.image.startsWith('http') || found.image.startsWith('./')
+            ? found.image
+            : `/images/uploads/${found.image}`
+        }
+      } else if (found.image && typeof found.image === 'object') {
+        authorImg = found.image
+      } else {
+        authorImg = teamAvatars[found.name] || imageTaimoor
+      }
 
       return {
         name: found.name,

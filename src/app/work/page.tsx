@@ -129,55 +129,14 @@ function ProjectsList({
   )
 }
 
-const clients = [
-  ['Phobia', logoPhobia],
-  ['Family Fund', logoFamilyFund],
-  ['Unseal', logoUnseal],
-  ['Mail Smirk', logoMailSmirk],
-  ['Home Work', logoHomeWork],
-  ['Green Life', logoGreenLife],
-  ['Bright Path', logoBrightPath],
-  ['North Adventures', logoNorthAdventures],
-]
-
-function Clients() {
-  return (
-    <Container className="mt-24 sm:mt-32 lg:mt-40">
-      <FadeIn>
-        <h2 className="font-display text-2xl font-semibold text-neutral-950">
-          Trusted by Innovative Companies
-        </h2>
-        <p className="mt-2 text-base text-neutral-600 max-w-2xl">
-          We’ve collaborated with startups and established enterprises across industries to engineer custom web software and digital tools.
-        </p>
-      </FadeIn>
-      <FadeInStagger className="mt-10" faster>
-        <ul
-          role="list"
-          className="grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-4"
-        >
-          {clients.map(([client, logo]) => (
-            <li key={client} className="group">
-              <FadeIn>
-                <div className="flex h-24 items-center justify-center rounded-2xl border border-neutral-200/80 bg-neutral-50/50 p-6 transition-all duration-300 group-hover:border-neutral-400 group-hover:bg-white group-hover:shadow-md">
-                  <Image src={logo} alt={client} className="max-h-12 w-auto object-contain" unoptimized />
-                </div>
-              </FadeIn>
-            </li>
-          ))}
-        </ul>
-      </FadeInStagger>
-    </Container>
-  )
-}
+import { Clients } from '@/components/Clients'
+import workContent from '@/content/work.json'
 
 export const metadata: Metadata = {
   title: 'Our Work',
   description:
     'Explore our portfolio of custom web applications, mobile platforms, and software solutions built for our clients.',
 }
-
-import workContent from '@/content/work.json'
 
 export default async function Work() {
   let projects = await loadCaseStudies()
@@ -200,7 +159,7 @@ export default async function Work() {
         The Homegear team worked seamlessly alongside our internal developers. They brought deep technical clarity, structured code quality, and shipped our core web platform ahead of schedule.
       </Testimonial>
 
-      <Clients />
+      <Clients heading="Trusted by Innovative Companies" />
 
       <ContactSection />
     </RootLayout>
