@@ -22,6 +22,28 @@ const teamAvatars: Record<string, any> = {
   'Emma Dorsey': imageEmmaDorsey,
 }
 
+export function cleanImagePath(val: any): string {
+  if (!val) return ''
+  let str = typeof val === 'string' ? val : val.src || ''
+  if (typeof str !== 'string' || !str) return ''
+
+  if (str.startsWith('http://') || str.startsWith('https://')) {
+    return str
+  }
+
+  str = str
+    .replace(/^@\/images\/clients\//, '')
+    .replace(/^@\/images\/uploads\//, '')
+    .replace(/^@\/images\/team\//, '')
+    .replace(/^@\/images\//, '')
+    .replace(/^\/images\/uploads\//, '')
+    .replace(/^\/images\//, '')
+    .replace(/^\.\//, '')
+    .replace(/^\//, '')
+
+  return `/images/uploads/${str}`
+}
+
 export function resolveAuthor(author: any) {
   const membersList = (teamMembers as any).team || teamMembers || []
 
@@ -31,16 +53,12 @@ export function resolveAuthor(author: any) {
     )
     if (found) {
       let authorImg: any = null
-      if (found.image && found.image !== 'na' && typeof found.image === 'string') {
-        if (found.image.startsWith('@/')) {
+      if (found.image && found.image !== 'na') {
+        if (typeof found.image === 'string' && (found.image.startsWith('@/images/team/') || found.image.startsWith('@/images/noor'))) {
           authorImg = teamAvatars[found.name] || imageTaimoor
         } else {
-          authorImg = found.image.startsWith('/') || found.image.startsWith('http') || found.image.startsWith('./')
-            ? found.image
-            : `/images/uploads/${found.image}`
+          authorImg = typeof found.image === 'string' ? cleanImagePath(found.image) : found.image
         }
-      } else if (found.image && typeof found.image === 'object') {
-        authorImg = found.image
       } else {
         authorImg = teamAvatars[found.name] || imageTaimoor
       }
@@ -128,21 +146,12 @@ async function loadEntries<T extends { date: string }>(
           if (directory === 'work') {
             const clientName = metadata.client || ''
             let imageVal = metadata.image || (metadata.snapshots && metadata.snapshots[0])
-            if (typeof imageVal === 'string') {
-              if (!imageVal.startsWith('/') && !imageVal.startsWith('http') && !imageVal.startsWith('./') && !imageVal.startsWith('@/')) {
-                imageVal = `/images/uploads/${imageVal}`
-              }
-            } else if (imageVal && typeof imageVal === 'object' && imageVal.src) {
-              imageVal = imageVal.src
-            }
             let logoVal = metadata.logo || clientLogos[clientName] || logoPhobia
-            if (typeof logoVal === 'string' && !logoVal.startsWith('/') && !logoVal.startsWith('http') && !logoVal.startsWith('./') && !logoVal.startsWith('@/')) {
-              logoVal = `/images/uploads/${logoVal}`
-            }
+
             metadata = {
               ...metadata,
-              logo: logoVal,
-              image: imageVal,
+              logo: typeof logoVal === 'string' ? cleanImagePath(logoVal) : logoVal,
+              image: typeof imageVal === 'string' ? cleanImagePath(imageVal) : imageVal,
               whatWeDid: metadata.whatWeDid || metadata.what_we_did || metadata.tags || [],
             }
           }

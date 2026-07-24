@@ -7,15 +7,11 @@ import { MDXComponents } from '@/components/MDXComponents'
 import { PageIntro } from '@/components/PageIntro'
 import { PageLinks } from '@/components/PageLinks'
 import { RootLayout } from '@/components/RootLayout'
-import { type CaseStudy, type MDXEntry, loadCaseStudies } from '@/lib/mdx'
+import { type CaseStudy, type MDXEntry, loadCaseStudies, cleanImagePath } from '@/lib/mdx'
 
 function resolveSnapshotSrc(snap: any): string {
   let raw = typeof snap === 'string' ? snap : snap?.image || snap?.src || snap
-  if (typeof raw !== 'string') return raw?.src || ''
-  if (raw.startsWith('/') || raw.startsWith('http') || raw.startsWith('./') || raw.startsWith('@/')) {
-    return raw
-  }
-  return `/images/uploads/${raw}`
+  return cleanImagePath(raw)
 }
 
 export default async function CaseStudyLayout({

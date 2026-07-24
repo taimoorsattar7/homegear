@@ -7,8 +7,8 @@ backend:
 # Enable local backend proxy for offline & local development (run `npm run cms`)
 local_backend: true
 
-media_folder: "src/images"
-public_folder: "@/images"
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
 
 collections:
   - name: "projects"
