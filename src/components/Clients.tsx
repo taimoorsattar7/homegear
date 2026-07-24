@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { Container } from '@/components/Container'
 import { FadeIn, FadeInStagger } from '@/components/FadeIn'
 import homeContent from '@/content/home.json'
+import { cleanImagePath } from '@/lib/mdx'
 
 import logoPhobia from '@/images/clients/phobia/logo-dark.svg'
 import logoFamilyFund from '@/images/clients/family-fund/logo-dark.svg'
@@ -26,15 +27,7 @@ export function Clients({ heading }: { heading?: string }) {
       const name = typeof c === 'string' ? c : c.name || ''
       let logo = typeof c === 'object' && c.logo ? c.logo : ''
       if (typeof logo === 'string' && logo) {
-        if (logo.startsWith('@/images/clients/')) {
-          logo = `/images/uploads/${logo.replace('@/images/clients/', '')}`
-        } else if (logo.startsWith('@/images/')) {
-          logo = `/images/uploads/${logo.replace('@/images/', '')}`
-        } else if (logo.startsWith('@/')) {
-          logo = `/images/uploads/${logo.replace('@/', '')}`
-        } else if (!logo.startsWith('/') && !logo.startsWith('http') && !logo.startsWith('./')) {
-          logo = `/images/uploads/${logo}`
-        }
+        logo = cleanImagePath(logo)
       }
       return { name, logo }
     })
@@ -59,11 +52,22 @@ export function Clients({ heading }: { heading?: string }) {
             {displayList.map((client) => (
               <li key={client.name}>
                 <FadeIn>
-                  {typeof client.logo === 'string' && client.logo ? (
-                    <img className="max-h-24 max-w-36 w-auto block object-contain filter invert opacity-90 transition hover:opacity-100" src={client.logo} alt={client.name} />
-                  ) : (
-                    <Image className="max-h-24 w-auto block filter invert opacity-90 transition hover:opacity-100" src={client.logo || logoPhobia} alt={client.name} unoptimized />
-                  )}
+                  <div className="flex h-16 w-36 items-center justify-center overflow-hidden">
+                    {typeof client.logo === 'string' && client.logo ? (
+                      <img
+                        className="max-h-16 max-w-36 w-auto h-auto object-contain opacity-90 transition hover:opacity-100 rounded-xl"
+                        src={client.logo}
+                        alt={client.name}
+                      />
+                    ) : (
+                      <Image
+                        className="max-h-16 max-w-36 w-auto h-auto object-contain opacity-90 transition hover:opacity-100 filter invert"
+                        src={client.logo || logoPhobia}
+                        alt={client.name}
+                        unoptimized
+                      />
+                    )}
+                  </div>
                 </FadeIn>
               </li>
             ))}
