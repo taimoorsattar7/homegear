@@ -28,15 +28,20 @@ export function GrayscaleTransitionImage(
     return null
   }
 
+  const imageProps =
+    typeof props.src === 'string'
+      ? { width: 1200, height: 800, unoptimized: true, ...props }
+      : props
+
   if (!mounted) {
     return (
       <div ref={ref} className="group relative">
-        <Image alt="" {...props} />
+        <Image alt="" {...imageProps} />
       </div>
     )
   }
 
-  return <GrayscaleTransitionImageAnimated containerRef={ref} props={props} />
+  return <GrayscaleTransitionImageAnimated containerRef={ref} props={imageProps} />
 }
 
 function GrayscaleTransitionImageAnimated({

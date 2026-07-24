@@ -95,9 +95,14 @@ async function loadEntries<T extends { date: string }>(
 
           if (directory === 'work') {
             const clientName = metadata.client || ''
+            let imageObj = metadata.image
+            if (typeof metadata.image === 'string') {
+              imageObj = { src: metadata.image }
+            }
             metadata = {
               ...metadata,
               logo: metadata.logo || clientLogos[clientName] || logoPhobia,
+              image: imageObj || metadata.image,
               whatWeDid: metadata.whatWeDid || metadata.what_we_did || metadata.tags || [],
             }
           }

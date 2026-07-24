@@ -25,6 +25,8 @@ collections:
     slug: "{{slug}}"
     fields:
       - { label: "Client / Project Name", name: "client", widget: "string" }
+      - { label: "Client Logo Image", name: "logo", widget: "image", required: false }
+      - { label: "Banner / Hero Image", name: "image", widget: "image", required: false }
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Date (YYYY-MM)", name: "date", widget: "string" }
       - { label: "Service / Category", name: "service", widget: "string" }
