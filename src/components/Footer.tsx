@@ -4,32 +4,53 @@ import TextIcon from '@/images/text-icon.png'
 
 import { Container } from '@/components/Container'
 import { FadeIn } from '@/components/FadeIn'
-// import { Logo } from '@/components/Logo'
-// import { socialMediaProfiles } from '@/components/SocialMedia'
+import homeContent from '@/content/home.json'
+import companyContent from '@/content/company.json'
 
-const navigation = [
-  {
-    title: 'Projects',
-    links: [
-      { title: 'Phobia', href: '/work/phobia' },
-      { title: 'Unseal', href: '/work/unseal' },
-      { title: 'FamilyFund', href: '/work/family-fund' },
-      { title: 'See all projects →', href: '/work' },
-    ],
-  },
-  {
-    title: 'Company',
-    links: [
-      { title: 'Our Work', href: '/work' },
-      { title: 'About Us', href: '/about' },
-      { title: 'Our Process', href: '/process' },
-      { title: 'Blog', href: '/blog' },
-      { title: 'Contact Us', href: '/contact' },
-    ],
-  },
-]
+function getProjectLinks() {
+  const cmsCompanies = (homeContent as any).clientsList || (homeContent as any).trustedCompanies
+  if (Array.isArray(cmsCompanies) && cmsCompanies.length > 0) {
+    const links = cmsCompanies.map((c: any) => {
+      const name = typeof c === 'string' ? c : c.name || 'Project'
+      const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-')
+      let href = '/work'
+      if (slug.includes('rightcam')) href = '/work/rightcam'
+      else if (slug.includes('cles')) href = '/work/cleseconomia'
+      else if (slug.includes('cmb') || slug.includes('family')) href = '/work/family-fund'
+      return { title: name, href }
+    })
+    links.push({ title: 'See all projects →', href: '/work' })
+    return links
+  }
+
+  return [
+    { title: 'RightCam', href: '/work/rightcam' },
+    { title: 'Cles Economia', href: '/work/cleseconomia' },
+    { title: 'Gruppo CMB', href: '/work/family-fund' },
+    { title: 'See all projects →', href: '/work' },
+  ]
+}
 
 function Navigation() {
+  const projectLinks = getProjectLinks()
+
+  const navigation = [
+    {
+      title: 'Projects',
+      links: projectLinks,
+    },
+    {
+      title: 'Company',
+      links: [
+        { title: 'Our Work', href: '/work' },
+        { title: 'About Us', href: '/about' },
+        { title: 'Our Process', href: '/process' },
+        { title: 'Blog', href: '/blog' },
+        { title: 'Contact Us', href: '/contact' },
+      ],
+    },
+  ]
+
   return (
     <nav className="w-full">
       <div className="flex flex-col gap-10 sm:gap-12">
@@ -69,40 +90,6 @@ function ArrowIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
     </svg>
   )
 }
-
-function NewsletterForm() {
-  return (
-    <form className="max-w-sm">
-      <h2 className="font-display text-sm font-semibold tracking-wider text-neutral-950">
-        Sign up for our newsletter
-      </h2>
-      <p className="mt-4 text-sm text-neutral-700">
-        Subscribe to get the latest design news, articles, resources and
-        inspiration.
-      </p>
-      <div className="relative mt-6">
-        <input
-          type="email"
-          placeholder="Email address"
-          autoComplete="email"
-          aria-label="Email address"
-          className="block w-full rounded-2xl border border-neutral-300 bg-transparent py-4 pr-20 pl-6 text-base/6 text-neutral-950 ring-4 ring-transparent transition placeholder:text-neutral-500 focus:border-neutral-950 focus:ring-neutral-950/5 focus:outline-hidden"
-        />
-        <div className="absolute inset-y-1 right-1 flex justify-end">
-          <button
-            type="submit"
-            aria-label="Submit"
-            className="flex aspect-square h-full items-center justify-center rounded-xl bg-neutral-950 text-white transition hover:bg-neutral-800"
-          >
-            <ArrowIcon className="w-4" />
-          </button>
-        </div>
-      </div>
-    </form>
-  )
-}
-
-import companyContent from '@/content/company.json'
 
 export function Footer() {
   return (
