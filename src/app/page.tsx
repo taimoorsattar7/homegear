@@ -77,12 +77,20 @@ function ProjectsSection({
                 <h3>
                   <Link href={project.href}>
                     <span className="absolute inset-0 rounded-3xl" />
-                    <Image
-                      src={project.logo}
-                      alt={project.client}
-                      className="h-16 w-16 transition-transform duration-300 group-hover:scale-110"
-                      unoptimized
-                    />
+                    {typeof project.logo === 'string' ? (
+                      <img
+                        src={project.logo}
+                        alt={project.client}
+                        className="h-16 w-16 object-contain transition-transform duration-300 group-hover:scale-110"
+                      />
+                    ) : (
+                      <Image
+                        src={project.logo}
+                        alt={project.client}
+                        className="h-16 w-16 transition-transform duration-300 group-hover:scale-110"
+                        unoptimized
+                      />
+                    )}
                   </Link>
                 </h3>
                 <p className="mt-6 flex items-center gap-x-2 text-sm">
