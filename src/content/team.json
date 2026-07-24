@@ -4,15 +4,15 @@
       "name": "Taimoor Sattar",
       "role": "Project Manager / President",
       "image": "@/images/team/taimoor.jpg",
-      "bio": "I build production-ready web and mobile applications using over six years of full-stack experience. I translate core design systems into reusable code components to construct scalable software. While grounded in traditional coding, I accelerate development cycles using AI models and tools like Antigravity. I direct the complete technical architecture for each project, selecting the exact databases, front-end frameworks, and backend APIs required. To guarantee stable launches, I enforce strict security measures, write comprehensive automated tests, and maintain clear code documentation.",
-      "website": "https://taiedits.com",
+      "bio": "I architect and build web and mobile apps using six years of full-stack experience. I turn designs into scalable code, speed up development with AI tools like Antigravity, and ensure smooth launches through strict security, testing, and documentation.",
+      "website": "",
       "social": ""
     },
     {
       "name": "Noor",
       "role": "UX/UI Designer",
       "image": "@/images/noor.png",
-      "bio": "",
+      "bio": "I design intuitive web and mobile interfaces. I create wireframes, prototypes, and design systems, using research and user testing to build accessible and engaging digital experiences.",
       "website": "",
       "social": ""
     }
