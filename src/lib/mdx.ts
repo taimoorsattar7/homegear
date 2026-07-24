@@ -97,14 +97,19 @@ async function loadEntries<T extends { date: string }>(
             const clientName = metadata.client || ''
             let imageVal = metadata.image || (metadata.snapshots && metadata.snapshots[0])
             if (typeof imageVal === 'string') {
-              if (!imageVal.startsWith('/') && !imageVal.startsWith('http') && !imageVal.startsWith('./')) {
+              if (!imageVal.startsWith('/') && !imageVal.startsWith('http') && !imageVal.startsWith('./') && !imageVal.startsWith('@/')) {
                 imageVal = `/images/uploads/${imageVal}`
               }
-              imageVal = { src: imageVal }
+            } else if (imageVal && typeof imageVal === 'object' && imageVal.src) {
+              imageVal = imageVal.src
+            }
+            let logoVal = metadata.logo || clientLogos[clientName] || logoPhobia
+            if (typeof logoVal === 'string' && !logoVal.startsWith('/') && !logoVal.startsWith('http') && !logoVal.startsWith('./') && !logoVal.startsWith('@/')) {
+              logoVal = `/images/uploads/${logoVal}`
             }
             metadata = {
               ...metadata,
-              logo: metadata.logo || clientLogos[clientName] || logoPhobia,
+              logo: logoVal,
               image: imageVal,
               whatWeDid: metadata.whatWeDid || metadata.what_we_did || metadata.tags || [],
             }

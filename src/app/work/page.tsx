@@ -47,13 +47,21 @@ function ProjectsList({
                 <div className="lg:col-span-4 flex flex-col justify-between">
                   <div>
                     <div className="flex items-center gap-x-4">
-                      <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white p-3 shadow-xs border border-neutral-200/60">
-                        <Image
-                          src={project.logo}
-                          alt={project.client}
-                          className="h-full w-full object-contain"
-                          unoptimized
-                        />
+                      <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white p-3 shadow-xs border border-neutral-200/60 overflow-hidden">
+                        {typeof project.logo === 'string' ? (
+                          <img
+                            src={project.logo}
+                            alt={project.client}
+                            className="h-full w-full object-contain"
+                          />
+                        ) : (
+                          <Image
+                            src={project.logo}
+                            alt={project.client}
+                            className="h-full w-full object-contain"
+                            unoptimized
+                          />
+                        )}
                       </div>
                       <div>
                         <h3 className="font-display text-lg font-semibold text-neutral-950">

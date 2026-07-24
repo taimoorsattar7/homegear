@@ -28,28 +28,38 @@ export function GrayscaleTransitionImage(
     return null
   }
 
-  const imageProps =
-    typeof props.src === 'string'
-      ? { width: 1200, height: 800, unoptimized: true, ...props }
-      : props
+  const isStringSrc = typeof props.src === 'string'
+  const normalizedProps = isStringSrc
+    ? { width: 1200, height: 800, unoptimized: true, ...props }
+    : props
 
   if (!mounted) {
     return (
-      <div ref={ref} className="group relative">
-        <Image alt="" {...imageProps} />
+      <div ref={ref} className="group relative overflow-hidden">
+        {isStringSrc ? (
+          <img
+            src={props.src as string}
+            alt={props.alt || ''}
+            className={`w-full h-auto object-cover ${props.className || ''}`}
+          />
+        ) : (
+          <Image alt="" {...normalizedProps} />
+        )}
       </div>
     )
   }
 
-  return <GrayscaleTransitionImageAnimated containerRef={ref} props={imageProps} />
+  return <GrayscaleTransitionImageAnimated containerRef={ref} props={normalizedProps} rawSrc={props.src} />
 }
 
 function GrayscaleTransitionImageAnimated({
   containerRef,
   props,
+  rawSrc,
 }: {
   containerRef: React.RefObject<HTMLDivElement | null>
   props: any
+  rawSrc: any
 }) {
   let { scrollYProgress } = useScroll({
     target: containerRef,
@@ -58,14 +68,33 @@ function GrayscaleTransitionImageAnimated({
   let grayscale = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0, 1])
   let filter = useMotionTemplate`grayscale(${grayscale})`
 
+  const isStringSrc = typeof rawSrc === 'string'
+
   return (
-    <div ref={containerRef} className="group relative">
-      <MotionImage alt="" style={{ filter } as any} {...props} />
+    <div ref={containerRef} className="group relative overflow-hidden">
+      {isStringSrc ? (
+        <motion.img
+          src={rawSrc}
+          alt=""
+          style={{ filter } as any}
+          className={`w-full h-auto object-cover ${props.className || ''}`}
+        />
+      ) : (
+        <MotionImage alt="" style={{ filter } as any} {...props} />
+      )}
       <div
-        className="pointer-events-none absolute top-0 left-0 w-full opacity-0 transition duration-300 group-hover:opacity-100"
+        className="pointer-events-none absolute top-0 left-0 w-full h-full opacity-0 transition duration-300 group-hover:opacity-100"
         aria-hidden="true"
       >
-        <Image alt="" {...props} />
+        {isStringSrc ? (
+          <img
+            src={rawSrc}
+            alt=""
+            className={`w-full h-auto object-cover ${props.className || ''}`}
+          />
+        ) : (
+          <Image alt="" {...props} />
+        )}
       </div>
     </div>
   )
