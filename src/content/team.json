@@ -1,44 +1,16 @@
-[
-  {
-    "name": "Taimoor Sattar",
-    "role": "Senior Project Manager / CEO",
-    "image": "@/images/team/taimoor.jpg",
-    "bio": "Leads engineering and product direction at Homegear, ensuring seamless software delivery and strategic execution."
-  },
-  {
-    "name": "Angela Fisher",
-    "role": "Front-end Developer",
-    "image": "@/images/team/angela-fisher.jpg",
-    "bio": "Specializes in modern Web & React interfaces, high-performance UI engineering, and design systems."
-  },
-  {
-    "name": "Leslie Alexander",
-    "role": "Senior Designer",
-    "image": "@/images/team/leslie-alexander.jpg",
-    "bio": "Crafts beautiful, accessible brand experiences and intuitive user interfaces for mobile and web."
-  },
-  {
-    "name": "Dries Vincent",
-    "role": "Full-stack Developer",
-    "image": "@/images/team/dries-vincent.jpg",
-    "bio": "Architects scalable cloud backends, API integrations, and resilient full-stack applications."
-  },
-  {
-    "name": "Kathryn Murphy",
-    "role": "UI/UX Designer",
-    "image": "@/images/team/kathryn-murphy.jpg",
-    "bio": "Focuses on human-centered design, user research, wireframing, and interactive design prototypes."
-  },
-  {
-    "name": "Chelsea Hagon",
-    "role": "Senior Designer",
-    "image": "@/images/team/chelsea-hagon.jpg",
-    "bio": "Drives design strategy, aesthetic vision, and visual identities across web and mobile platforms."
-  },
-  {
-    "name": "Emma Dorsey",
-    "role": "Senior Developer",
-    "image": "@/images/team/emma-dorsey.jpg",
-    "bio": "Builds robust mobile applications and high-throughput web software with modern frameworks."
-  }
-]
+{
+  "team": [
+    {
+      "name": "Taimoor Sattar",
+      "role": "Project Manager / President",
+      "image": "na",
+      "bio": "I build production-ready web and mobile applications using over six years of full-stack experience. I translate core design systems into reusable code components to construct scalable software. While grounded in traditional coding, I accelerate development cycles using AI models and tools like Antigravity. I direct the complete technical architecture for each project, selecting the exact databases, front-end frameworks, and backend APIs required. To guarantee stable launches, I enforce strict security measures, write comprehensive automated tests, and maintain clear code documentation."
+    },
+    {
+      "name": "Noor",
+      "role": "UX/UI Designer",
+      "image": "na",
+      "bio": ""
+    }
+  ]
+}
