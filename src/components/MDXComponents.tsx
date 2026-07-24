@@ -9,6 +9,7 @@ import { TagList, TagListItem } from '@/components/TagList'
 export const MDXComponents = {
   Blockquote({
     className,
+    image,
     ...props
   }: React.ComponentPropsWithoutRef<typeof Blockquote>) {
     return <Blockquote className={clsx('my-32', className)} {...props} />

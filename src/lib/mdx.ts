@@ -98,6 +98,7 @@ async function loadEntries<T extends { date: string }>(
             metadata = {
               ...metadata,
               logo: metadata.logo || clientLogos[clientName] || logoPhobia,
+              whatWeDid: metadata.whatWeDid || metadata.what_we_did || metadata.tags || [],
             }
           }
 
@@ -137,6 +138,7 @@ export interface CaseStudy {
   logo: ImageProps['src']
   image: ImagePropsWithOptionalAlt
   snapshots?: Array<any>
+  whatWeDid?: Array<string>
   service: string
   testimonial: {
     author: {

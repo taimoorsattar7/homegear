@@ -29,6 +29,11 @@ collections:
       - { label: "Date (YYYY-MM)", name: "date", widget: "string" }
       - { label: "Service / Category", name: "service", widget: "string" }
       - { label: "Short Description", name: "description", widget: "text" }
+      - label: "What We Did (Tags)"
+        name: "whatWeDid"
+        widget: "list"
+        required: false
+        field: { label: "Tag / Category", name: "tag", widget: "string" }
       - label: "Project Snapshots / Screenshots"
         name: "snapshots"
         widget: "list"
