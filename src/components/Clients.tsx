@@ -25,8 +25,16 @@ export function Clients({ heading }: { heading?: string }) {
     displayList = cmsCompanies.map((c: any) => {
       const name = typeof c === 'string' ? c : c.name || ''
       let logo = typeof c === 'object' && c.logo ? c.logo : ''
-      if (typeof logo === 'string' && logo && !logo.startsWith('/') && !logo.startsWith('http') && !logo.startsWith('./') && !logo.startsWith('@/')) {
-        logo = `/images/uploads/${logo}`
+      if (typeof logo === 'string' && logo) {
+        if (logo.startsWith('@/images/clients/')) {
+          logo = `/images/uploads/${logo.replace('@/images/clients/', '')}`
+        } else if (logo.startsWith('@/images/')) {
+          logo = `/images/uploads/${logo.replace('@/images/', '')}`
+        } else if (logo.startsWith('@/')) {
+          logo = `/images/uploads/${logo.replace('@/', '')}`
+        } else if (!logo.startsWith('/') && !logo.startsWith('http') && !logo.startsWith('./')) {
+          logo = `/images/uploads/${logo}`
+        }
       }
       return { name, logo }
     })
