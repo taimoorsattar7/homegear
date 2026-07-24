@@ -190,8 +190,10 @@ collections:
             fields:
               - { label: "Name", name: "name", widget: "string" }
               - { label: "Role", name: "role", widget: "string" }
-              - { label: "Image Path", name: "image", widget: "string" }
+              - { label: "Team Member Photo", name: "image", widget: "image", required: false }
               - { label: "Bio", name: "bio", widget: "text", required: false }
+              - { label: "Website URL (Optional)", name: "website", widget: "string", required: false }
+              - { label: "Social Media URL (Optional)", name: "social", widget: "string", required: false }
 
       - label: "Company Info & Contact"
         name: "company_info"

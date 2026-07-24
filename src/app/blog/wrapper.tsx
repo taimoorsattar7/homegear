@@ -42,11 +42,20 @@ export default async function BlogArticleWrapper({
             {author && (
               <div className="mt-8 flex items-center justify-center gap-x-4 rounded-full border border-neutral-200 bg-neutral-50/80 px-5 py-2.5 shadow-xs">
                 <div className="h-10 w-10 overflow-hidden rounded-full bg-neutral-100 flex-none">
-                  <Image
-                    alt={author.name}
-                    {...author.image}
-                    className="h-full w-full object-cover grayscale"
-                  />
+                  {typeof author.image?.src === 'string' ? (
+                    <img
+                      src={author.image.src}
+                      alt={author.name}
+                      className="h-full w-full object-cover grayscale"
+                    />
+                  ) : (
+                    <Image
+                      alt={author.name}
+                      {...author.image}
+                      className="h-full w-full object-cover grayscale"
+                      unoptimized
+                    />
+                  )}
                 </div>
                 <div className="text-left text-sm">
                   <div className="font-semibold text-neutral-950">
@@ -71,11 +80,20 @@ export default async function BlogArticleWrapper({
           <FadeIn className="mx-auto mt-20 max-w-3xl border-t border-neutral-200 pt-12">
             <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 rounded-3xl border border-neutral-200/80 bg-neutral-50/60 p-6 sm:p-8 shadow-xs">
               <div className="h-20 w-20 overflow-hidden rounded-2xl bg-neutral-100 flex-none shadow-xs">
-                <Image
-                  alt={author.name}
-                  {...author.image}
-                  className="h-full w-full object-cover grayscale"
-                />
+                {typeof author.image?.src === 'string' ? (
+                  <img
+                    src={author.image.src}
+                    alt={author.name}
+                    className="h-full w-full object-cover grayscale"
+                  />
+                ) : (
+                  <Image
+                    alt={author.name}
+                    {...author.image}
+                    className="h-full w-full object-cover grayscale"
+                    unoptimized
+                  />
+                )}
               </div>
               <div className="text-center sm:text-left">
                 <h3 className="font-display text-xl font-semibold text-neutral-950">
@@ -88,6 +106,30 @@ export default async function BlogArticleWrapper({
                   <p className="mt-3 text-sm text-neutral-600 leading-relaxed">
                     {author.bio}
                   </p>
+                )}
+                {(author.website || author.social) && (
+                  <div className="mt-4 flex items-center justify-center sm:justify-start gap-x-4 text-xs font-medium">
+                    {author.website && (
+                      <a
+                        href={author.website}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-neutral-950 underline hover:text-neutral-700"
+                      >
+                        🌐 Website
+                      </a>
+                    )}
+                    {author.social && (
+                      <a
+                        href={author.social}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-neutral-950 underline hover:text-neutral-700"
+                      >
+                        🔗 Social Profile
+                      </a>
+                    )}
+                  </div>
                 )}
               </div>
             </div>

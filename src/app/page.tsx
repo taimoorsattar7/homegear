@@ -200,11 +200,20 @@ function BlogSection({ articles }: { articles: Array<MDXEntry<Article>> }) {
                   </p>
                 </div>
                 <div className="mt-8 flex items-center gap-x-3 border-t border-neutral-200/80 pt-4">
-                  <Image
-                    alt={article.author.name}
-                    {...article.author.image}
-                    className="h-9 w-9 rounded-full object-cover grayscale flex-none"
-                  />
+                  {typeof article.author.image?.src === 'string' ? (
+                    <img
+                      alt={article.author.name}
+                      src={article.author.image.src}
+                      className="h-9 w-9 rounded-full object-cover grayscale flex-none"
+                    />
+                  ) : (
+                    <Image
+                      alt={article.author.name}
+                      {...article.author.image}
+                      className="h-9 w-9 rounded-full object-cover grayscale flex-none"
+                      unoptimized
+                    />
+                  )}
                   <div className="text-xs">
                     <div className="font-semibold text-neutral-950">{article.author.name}</div>
                     <div className="text-neutral-500">{article.author.role}</div>

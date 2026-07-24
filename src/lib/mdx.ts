@@ -21,23 +21,33 @@ const teamAvatars: Record<string, any> = {
 }
 
 export function resolveAuthor(author: any) {
+  const membersList = (teamMembers as any).team || teamMembers || []
+
   if (typeof author === 'string') {
-    const found = teamMembers.find(
-      (m) => m.name.toLowerCase() === author.toLowerCase(),
+    const found = membersList.find(
+      (m: any) => m.name && m.name.toLowerCase() === author.toLowerCase(),
     )
     if (found) {
+      let authorImg = found.image && found.image !== 'na'
+        ? (found.image.startsWith('/') || found.image.startsWith('http') || found.image.startsWith('./') ? found.image : `/images/uploads/${found.image}`)
+        : (teamAvatars[found.name] || imageTaimoor)
+
       return {
         name: found.name,
         role: found.role,
-        bio: (found as any).bio || '',
-        image: { src: teamAvatars[found.name] || imageTaimoor },
+        bio: found.bio || '',
+        website: found.website || '',
+        social: found.social || '',
+        image: typeof authorImg === 'string' ? { src: authorImg } : authorImg,
       }
     }
     return {
       name: author,
       role: 'Team Member',
       bio: '',
-      image: { src: imageTaimoor },
+      website: '',
+      social: '',
+      image: { src: teamAvatars[author] || imageTaimoor },
     }
   }
 
@@ -47,6 +57,8 @@ export function resolveAuthor(author: any) {
       name: author.name || 'Taimoor Sattar',
       role: author.role || 'Team Member',
       bio: author.bio || '',
+      website: author.website || '',
+      social: author.social || '',
       image: typeof avatar === 'object' && avatar.src ? avatar : { src: avatar },
     }
   }
@@ -55,8 +67,15 @@ export function resolveAuthor(author: any) {
     name: 'Taimoor Sattar',
     role: 'Senior Project Manager / CEO',
     bio: 'Leads engineering and product direction at Homegear, ensuring seamless software delivery and strategic execution.',
+    website: '',
+    social: '',
     image: { src: imageTaimoor },
   }
+}
+
+export function getTeamMembers() {
+  const membersList = (teamMembers as any).team || teamMembers || []
+  return membersList.map((m: any) => resolveAuthor(m.name || m))
 }
 
 import logoPhobia from '@/images/clients/phobia/logomark-dark.svg'

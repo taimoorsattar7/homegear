@@ -13,7 +13,97 @@ import { StatList, StatListItem } from '@/components/StatList'
 
 import imageTaimoor from '@/images/team/taimoor.jpg'
 
-import { loadArticles, resolveAuthor } from '@/lib/mdx'
+import { loadArticles, resolveAuthor, getTeamMembers } from '@/lib/mdx'
+
+function Team() {
+  const members = getTeamMembers()
+
+  return (
+    <Container className="mt-24 sm:mt-32 lg:mt-40">
+      <div className="space-y-24">
+        <FadeInStagger>
+          <Border as={FadeIn} />
+          <div className="grid grid-cols-1 gap-6 pt-12 sm:pt-16 lg:grid-cols-4 xl:gap-8">
+            <FadeIn>
+              <h2 className="font-display text-2xl font-semibold text-neutral-950">
+                Our Team
+              </h2>
+            </FadeIn>
+            <div className="lg:col-span-3">
+              <ul
+                role="list"
+                className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:gap-8"
+              >
+                {members.map((person: any) => {
+                  const imgSrc = typeof person.image?.src === 'string' ? person.image.src : person.image
+                  return (
+                    <li key={person.name}>
+                      <FadeIn>
+                        <div className="group relative overflow-hidden rounded-3xl bg-neutral-100 shadow-sm border border-neutral-200/80">
+                          {typeof imgSrc === 'string' ? (
+                            <img
+                              className="h-96 w-full object-cover transition duration-300 group-hover:scale-105"
+                              src={imgSrc}
+                              alt={person.name}
+                            />
+                          ) : (
+                            <Image
+                              className="h-96 w-full object-cover transition duration-300 group-hover:scale-105"
+                              src={imgSrc}
+                              alt={person.name}
+                              unoptimized
+                            />
+                          )}
+                          <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/85 via-black/40 to-transparent p-6 text-white transition duration-300">
+                            <p className="font-display text-base font-semibold tracking-wide text-white">
+                              {person.name}
+                            </p>
+                            <p className="mt-1 text-xs font-medium text-neutral-300">
+                              {person.role}
+                            </p>
+                            {person.bio && (
+                              <p className="mt-2 text-xs text-neutral-300/90 line-clamp-3 leading-relaxed">
+                                {person.bio}
+                              </p>
+                            )}
+                            {(person.website || person.social) && (
+                              <div className="mt-3 flex items-center gap-x-3 text-xs">
+                                {person.website && (
+                                  <a
+                                    href={person.website}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center gap-1 font-semibold text-white hover:underline"
+                                  >
+                                    🌐 Website
+                                  </a>
+                                )}
+                                {person.social && (
+                                  <a
+                                    href={person.social}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center gap-1 font-semibold text-white hover:underline"
+                                  >
+                                    🔗 Social
+                                  </a>
+                                )}
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      </FadeIn>
+                    </li>
+                  )
+                })}
+              </ul>
+            </div>
+          </div>
+        </FadeInStagger>
+      </div>
+    </Container>
+  )
+}
 import { RootLayout } from '@/components/RootLayout'
 // IMAGES
 import logoDocker from '@/images/tech/docker_logo.png'
@@ -119,58 +209,6 @@ function LogosMemo() {
   )
 }
 
-
-import teamMembers from '@/content/team.json'
-
-function Team() {
-  const resolvedMembers = teamMembers.map((member) => resolveAuthor(member.name))
-
-  return (
-    <Container className="mt-24 sm:mt-32 lg:mt-40">
-      <div className="space-y-24">
-        <FadeInStagger>
-          <Border as={FadeIn} />
-          <div className="grid grid-cols-1 gap-6 pt-12 sm:pt-16 lg:grid-cols-4 xl:gap-8">
-            <FadeIn>
-              <h2 className="font-display text-2xl font-semibold text-neutral-950">
-                Our Team
-              </h2>
-            </FadeIn>
-            <div className="lg:col-span-3">
-              <ul
-                role="list"
-                className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:gap-8"
-              >
-                {resolvedMembers.map((person) => (
-                  <li key={person.name}>
-                    <FadeIn>
-                      <div className="group relative overflow-hidden rounded-3xl bg-neutral-100">
-                        <Image
-                          className="h-96 w-full object-cover transition duration-300 group-hover:scale-105"
-                          src={person.image.src}
-                          alt={person.name}
-                          unoptimized
-                        />
-                        <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/80 via-black/20 to-transparent p-6 text-white transition duration-300">
-                          <p className="font-display text-base font-semibold tracking-wide text-white">
-                            {person.name}
-                          </p>
-                          <p className="mt-1 text-xs text-neutral-300">
-                            {person.role}
-                          </p>
-                        </div>
-                      </div>
-                    </FadeIn>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </FadeInStagger>
-      </div>
-    </Container>
-  )
-}
 
 export const metadata: Metadata = {
   title: 'About Us',
