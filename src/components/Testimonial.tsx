@@ -53,14 +53,13 @@ export function Testimonial({
   )
 }
 
+import { cleanImagePath } from '@/lib/mdx'
+
 export function SharedTestimonial({ className }: { className?: string }) {
   const t = (homeContent as any).testimonial || {}
   const quote = t.quote || "The Homegear team worked seamlessly alongside our internal developers. They brought deep technical clarity, structured code quality, and shipped our core web platform ahead of schedule."
   const clientName = t.clientName || "Mail Smirk"
-  let logoSrc = t.clientLogo || logoMailSmirk
-  if (typeof logoSrc === 'string' && logoSrc && !logoSrc.startsWith('/') && !logoSrc.startsWith('http') && !logoSrc.startsWith('./') && !logoSrc.startsWith('@/')) {
-    logoSrc = `/images/uploads/${logoSrc}`
-  }
+  let logoSrc = t.clientLogo ? cleanImagePath(t.clientLogo) : logoMailSmirk
 
   return (
     <Testimonial
