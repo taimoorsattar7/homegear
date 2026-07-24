@@ -1,10 +1,17 @@
 import { NextResponse } from 'next/server'
 
-const RESEND_API_KEY =
-  process.env.RESEND_API_KEY || 're_Da2WEJ3R_4QTREteNM5r8iARfjpB9cFQY'
+const RESEND_API_KEY = process.env.RESEND_API_KEY
 
 export async function POST(request: Request) {
   try {
+    if (!RESEND_API_KEY) {
+      console.error('RESEND_API_KEY is not configured.')
+      return NextResponse.json(
+        { error: 'Email service configuration error. Please try again later.' },
+        { status: 500 },
+      )
+    }
+
     const body = await request.json()
     const { name, email, company, phone, message } = body
 
