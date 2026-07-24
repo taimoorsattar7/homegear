@@ -6,6 +6,7 @@ import { FadeIn } from '@/components/FadeIn'
 import { GridPattern } from '@/components/GridPattern'
 import homeContent from '@/content/home.json'
 import logoMailSmirk from '@/images/clients/mail-smirk/logo-dark.svg'
+import { cleanImagePath } from '@/lib/mdx'
 
 export function Testimonial({
   children,
@@ -35,15 +36,33 @@ export function Testimonial({
                 {children}
               </p>
             </blockquote>
-            <figcaption className="mt-10">
-              {typeof client.logo === 'string' ? (
-                <img
-                  src={client.logo}
-                  alt={client.name}
-                  className="h-12 w-auto object-contain"
-                />
-              ) : (
-                <Image src={client.logo} alt={client.name} unoptimized />
+            <figcaption className="mt-10 flex flex-wrap items-center gap-4">
+              <div
+                title={client.name}
+                aria-label={client.name}
+                className="flex h-14 items-center justify-center rounded-2xl bg-white px-5 py-2 shadow-xs border border-neutral-200/80 transition hover:shadow-md hover:border-neutral-300"
+              >
+                {typeof client.logo === 'string' ? (
+                  <img
+                    src={client.logo}
+                    alt={client.name}
+                    title={client.name}
+                    className="h-9 max-w-44 w-auto object-contain"
+                  />
+                ) : (
+                  <Image
+                    src={client.logo}
+                    alt={client.name}
+                    title={client.name}
+                    className="h-9 max-w-44 w-auto object-contain"
+                    unoptimized
+                  />
+                )}
+              </div>
+              {client.name && (
+                <span className="font-display text-sm font-semibold tracking-wide text-neutral-900">
+                  {client.name}
+                </span>
               )}
             </figcaption>
           </figure>
@@ -52,8 +71,6 @@ export function Testimonial({
     </div>
   )
 }
-
-import { cleanImagePath } from '@/lib/mdx'
 
 export function SharedTestimonial({ className }: { className?: string }) {
   const t = (homeContent as any).testimonial || {}

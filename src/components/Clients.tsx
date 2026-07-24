@@ -36,7 +36,7 @@ export function Clients({ heading }: { heading?: string }) {
   }
 
   return (
-    <div className="mt-24 rounded-4xl bg-neutral-950 py-20 sm:mt-32 sm:py-32 lg:mt-56">
+    <div className="mt-24 rounded-4xl bg-neutral-950 py-16 sm:mt-32 sm:py-24 lg:mt-56">
       <Container>
         <FadeIn className="flex items-center gap-x-8">
           <h2 className="text-center font-display text-sm font-semibold tracking-wider text-white sm:text-left">
@@ -47,26 +47,37 @@ export function Clients({ heading }: { heading?: string }) {
         <FadeInStagger faster>
           <ul
             role="list"
-            className="mt-10 grid grid-cols-2 gap-x-8 gap-y-10 lg:grid-cols-4 place-items-center"
+            className="mt-10 grid grid-cols-2 gap-6 sm:grid-cols-4 place-items-stretch"
           >
             {displayList.map((client) => (
-              <li key={client.name}>
-                <FadeIn>
-                  <div className="flex h-16 w-36 items-center justify-center overflow-hidden">
-                    {typeof client.logo === 'string' && client.logo ? (
-                      <img
-                        className="max-h-16 max-w-36 w-auto h-auto object-contain opacity-90 transition hover:opacity-100 rounded-xl"
-                        src={client.logo}
-                        alt={client.name}
-                      />
-                    ) : (
-                      <Image
-                        className="max-h-16 max-w-36 w-auto h-auto object-contain opacity-90 transition hover:opacity-100 filter invert"
-                        src={client.logo || logoPhobia}
-                        alt={client.name}
-                        unoptimized
-                      />
-                    )}
+              <li key={client.name} className="flex">
+                <FadeIn className="w-full flex">
+                  <div
+                    title={client.name}
+                    aria-label={client.name}
+                    className="group relative flex w-full flex-col items-center justify-center rounded-2xl border border-neutral-800 bg-white/95 p-5 shadow-xs transition-all duration-300 hover:scale-[1.04] hover:bg-white hover:border-neutral-300 hover:shadow-xl"
+                  >
+                    <div className="flex h-14 w-full items-center justify-center overflow-hidden">
+                      {typeof client.logo === 'string' && client.logo ? (
+                        <img
+                          className="max-h-12 max-w-full w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                          src={client.logo}
+                          alt={client.name}
+                          title={client.name}
+                        />
+                      ) : (
+                        <Image
+                          className="max-h-12 max-w-full w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                          src={client.logo || logoPhobia}
+                          alt={client.name}
+                          title={client.name}
+                          unoptimized
+                        />
+                      )}
+                    </div>
+                    <span className="mt-3 text-xs font-semibold tracking-wide text-neutral-700 transition-colors duration-200 group-hover:text-neutral-950 text-center">
+                      {client.name}
+                    </span>
                   </div>
                 </FadeIn>
               </li>
