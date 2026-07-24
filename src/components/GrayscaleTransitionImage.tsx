@@ -11,6 +11,18 @@ import {
 
 const MotionImage = motion.create(Image)
 
+function normalizeImageSrc(val: any): any {
+  if (!val) return val
+  let current = val
+  while (current && typeof current === 'object' && current.src && typeof current.src === 'object') {
+    current = current.src
+  }
+  if (current && typeof current === 'object' && typeof current.src === 'string' && (!current.height || !current.width)) {
+    return current.src
+  }
+  return current
+}
+
 export function GrayscaleTransitionImage(
   props: Pick<
     ImageProps,
@@ -24,21 +36,23 @@ export function GrayscaleTransitionImage(
     setMounted(true)
   }, [])
 
-  if (!props.src) {
+  const cleanSrc = normalizeImageSrc(props.src)
+
+  if (!cleanSrc) {
     return null
   }
 
-  const isStringSrc = typeof props.src === 'string'
+  const isStringSrc = typeof cleanSrc === 'string'
   const normalizedProps = isStringSrc
-    ? { width: 1200, height: 800, unoptimized: true, ...props }
-    : props
+    ? { width: 1200, height: 800, unoptimized: true, ...props, src: cleanSrc }
+    : { ...props, src: cleanSrc }
 
   if (!mounted) {
     return (
       <div ref={ref} className="group relative overflow-hidden">
         {isStringSrc ? (
           <img
-            src={props.src as string}
+            src={cleanSrc as string}
             alt={props.alt || ''}
             className={`w-full h-auto object-cover ${props.className || ''}`}
           />
@@ -49,7 +63,7 @@ export function GrayscaleTransitionImage(
     )
   }
 
-  return <GrayscaleTransitionImageAnimated containerRef={ref} props={normalizedProps} rawSrc={props.src} />
+  return <GrayscaleTransitionImageAnimated containerRef={ref} props={normalizedProps} rawSrc={cleanSrc} />
 }
 
 function GrayscaleTransitionImageAnimated({

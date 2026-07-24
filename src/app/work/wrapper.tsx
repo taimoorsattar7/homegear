@@ -30,9 +30,13 @@ export default async function CaseStudyLayout({
     .filter(({ metadata }) => metadata !== caseStudy)
     .slice(0, 2)
 
-  let bannerImage = caseStudy.image
-  if (!bannerImage && caseStudy.snapshots && caseStudy.snapshots.length > 0) {
-    bannerImage = { src: resolveSnapshotSrc(caseStudy.snapshots[0]) }
+  let rawBanner: any = caseStudy.image || (caseStudy.snapshots && caseStudy.snapshots[0])
+  let bannerSrc: any = rawBanner
+  if (rawBanner && typeof rawBanner === 'object' && typeof rawBanner.src === 'string' && !rawBanner.width) {
+    bannerSrc = rawBanner.src
+  }
+  if (typeof bannerSrc === 'string' && !bannerSrc.startsWith('/') && !bannerSrc.startsWith('http') && !bannerSrc.startsWith('./') && !bannerSrc.startsWith('@/')) {
+    bannerSrc = `/images/uploads/${bannerSrc}`
   }
 
   return (
@@ -61,11 +65,11 @@ export default async function CaseStudyLayout({
               </Container>
             </div>
 
-            {bannerImage && (
+            {bannerSrc && (
               <div className="border-y border-neutral-200 bg-neutral-100">
                 <div className="mx-auto -my-px max-w-304 bg-neutral-200">
                   <GrayscaleTransitionImage
-                    {...(typeof bannerImage === 'string' ? { src: bannerImage } : bannerImage)}
+                    src={bannerSrc}
                     quality={90}
                     className="w-full"
                     sizes="(min-width: 1216px) 76rem, 100vw"

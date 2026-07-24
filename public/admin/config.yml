@@ -105,6 +105,15 @@ collections:
           - { label: "Services Eyebrow", name: "servicesEyebrow", widget: "string" }
           - { label: "Services Section Title", name: "servicesTitle", widget: "string" }
           - { label: "Services Section Description", name: "servicesDescription", widget: "text" }
+          - label: "Trusted Companies List"
+            name: "clientsList"
+            widget: "list"
+            required: false
+            fields:
+              - { label: "Company Name", name: "name", widget: "string" }
+              - { label: "Company Logo", name: "logo", widget: "image", required: false }
+              - { label: "Company Info / Description (Optional)", name: "description", widget: "text", required: false }
+              - { label: "Company Website URL (Optional)", name: "website", widget: "string", required: false }
           - label: "Services List"
             name: "servicesList"
             widget: "list"
