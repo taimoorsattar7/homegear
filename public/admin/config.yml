@@ -114,6 +114,14 @@ collections:
               - { label: "Company Logo", name: "logo", widget: "image", required: false }
               - { label: "Company Info / Description (Optional)", name: "description", widget: "text", required: false }
               - { label: "Company Website URL (Optional)", name: "website", widget: "string", required: false }
+          - label: "Shared Testimonial Section"
+            name: "testimonial"
+            widget: "object"
+            required: false
+            fields:
+              - { label: "Testimonial Quote / Content", name: "quote", widget: "text" }
+              - { label: "Client / Company Name", name: "clientName", widget: "string" }
+              - { label: "Client / Company Logo", name: "clientLogo", widget: "image", required: false }
           - label: "Services List"
             name: "servicesList"
             widget: "list"

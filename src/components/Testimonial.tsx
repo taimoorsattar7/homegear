@@ -4,6 +4,8 @@ import clsx from 'clsx'
 import { Container } from '@/components/Container'
 import { FadeIn } from '@/components/FadeIn'
 import { GridPattern } from '@/components/GridPattern'
+import homeContent from '@/content/home.json'
+import logoMailSmirk from '@/images/clients/mail-smirk/logo-dark.svg'
 
 export function Testimonial({
   children,
@@ -48,5 +50,24 @@ export function Testimonial({
         </FadeIn>
       </Container>
     </div>
+  )
+}
+
+export function SharedTestimonial({ className }: { className?: string }) {
+  const t = (homeContent as any).testimonial || {}
+  const quote = t.quote || "The Homegear team worked seamlessly alongside our internal developers. They brought deep technical clarity, structured code quality, and shipped our core web platform ahead of schedule."
+  const clientName = t.clientName || "Mail Smirk"
+  let logoSrc = t.clientLogo || logoMailSmirk
+  if (typeof logoSrc === 'string' && logoSrc && !logoSrc.startsWith('/') && !logoSrc.startsWith('http') && !logoSrc.startsWith('./') && !logoSrc.startsWith('@/')) {
+    logoSrc = `/images/uploads/${logoSrc}`
+  }
+
+  return (
+    <Testimonial
+      className={className}
+      client={{ name: clientName, logo: logoSrc }}
+    >
+      {quote}
+    </Testimonial>
   )
 }

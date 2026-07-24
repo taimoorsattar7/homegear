@@ -9,7 +9,7 @@ import { ContactSection } from '@/components/ContactSection'
 import { Container } from '@/components/Container'
 import { FadeIn, FadeInStagger } from '@/components/FadeIn'
 import { PageIntro } from '@/components/PageIntro'
-import { Testimonial } from '@/components/Testimonial'
+import { SharedTestimonial } from '@/components/Testimonial'
 import logoBrightPath from '@/images/clients/bright-path/logo-dark.svg'
 import logoFamilyFund from '@/images/clients/family-fund/logo-dark.svg'
 import logoGreenLife from '@/images/clients/green-life/logo-dark.svg'
@@ -152,12 +152,7 @@ export default async function Work() {
 
       <ProjectsList projects={projects} />
 
-      <Testimonial
-        className="mt-24 sm:mt-32 lg:mt-40"
-        client={{ name: 'Mail Smirk', logo: logoMailSmirk }}
-      >
-        The Homegear team worked seamlessly alongside our internal developers. They brought deep technical clarity, structured code quality, and shipped our core web platform ahead of schedule.
-      </Testimonial>
+      <SharedTestimonial className="mt-24 sm:mt-32 lg:mt-40" />
 
       <Clients heading="Trusted by Innovative Companies" />
 

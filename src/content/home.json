@@ -28,6 +28,11 @@
       "website": "https://awnas.dev"
     }
   ],
+  "testimonial": {
+    "quote": "The Homegear team worked seamlessly alongside our internal developers. They brought deep technical clarity, structured code quality, and shipped our core web platform ahead of schedule.",
+    "clientName": "Mail Smirk",
+    "clientLogo": ""
+  },
   "servicesEyebrow": "Our Core Capabilities",
   "servicesTitle": "End-to-end software development tailored to your business goals.",
   "servicesDescription": "From strategic product design to scalable full-stack engineering, we transform ambitious ideas into world-class digital products with speed, security, and precision.",

@@ -3,6 +3,7 @@ import glob from 'fast-glob'
 import teamMembers from '@/content/team.json'
 
 import imageTaimoor from '@/images/team/taimoor.jpg'
+import imageNoor from '@/images/noor.png'
 import imageAngelaFisher from '@/images/team/angela-fisher.jpg'
 import imageLeslieAlexander from '@/images/team/leslie-alexander.jpg'
 import imageDriesVincent from '@/images/team/dries-vincent.jpg'
@@ -12,6 +13,7 @@ import imageEmmaDorsey from '@/images/team/emma-dorsey.jpg'
 
 const teamAvatars: Record<string, any> = {
   'Taimoor Sattar': imageTaimoor,
+  Noor: imageNoor,
   'Angela Fisher': imageAngelaFisher,
   'Leslie Alexander': imageLeslieAlexander,
   'Dries Vincent': imageDriesVincent,

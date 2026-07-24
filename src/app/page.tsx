@@ -7,7 +7,7 @@ import { Container } from '@/components/Container'
 import { FadeIn, FadeInStagger } from '@/components/FadeIn'
 import { SectionIntro } from '@/components/SectionIntro'
 import { StylizedImage } from '@/components/StylizedImage'
-import { Testimonial } from '@/components/Testimonial'
+import { SharedTestimonial } from '@/components/Testimonial'
 
 import logoCles from '@/images/clients/cles_c_left.png'
 import logoCMB from '@/images/clients/logo_bianco_cmb_150x60.webp'
@@ -232,12 +232,7 @@ export default async function Home() {
 
       <BlogSection articles={articles} />
 
-      <Testimonial
-        className="mt-24 sm:mt-32 lg:mt-40"
-        client={{ name: 'Phobia', logo: logoCles }}
-      >
-        Delivered on time and met client expectations with a solution aligned to requirements. Reliable and professional.
-      </Testimonial>
+      <SharedTestimonial className="mt-24 sm:mt-32 lg:mt-40" />
 
       <ContactSection showOffices={false} />
     </RootLayout>
