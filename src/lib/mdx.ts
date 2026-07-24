@@ -95,14 +95,17 @@ async function loadEntries<T extends { date: string }>(
 
           if (directory === 'work') {
             const clientName = metadata.client || ''
-            let imageObj = metadata.image
-            if (typeof metadata.image === 'string') {
-              imageObj = { src: metadata.image }
+            let imageVal = metadata.image || (metadata.snapshots && metadata.snapshots[0])
+            if (typeof imageVal === 'string') {
+              if (!imageVal.startsWith('/') && !imageVal.startsWith('http') && !imageVal.startsWith('./')) {
+                imageVal = `/images/uploads/${imageVal}`
+              }
+              imageVal = { src: imageVal }
             }
             metadata = {
               ...metadata,
               logo: metadata.logo || clientLogos[clientName] || logoPhobia,
-              image: imageObj || metadata.image,
+              image: imageVal,
               whatWeDid: metadata.whatWeDid || metadata.what_we_did || metadata.tags || [],
             }
           }

@@ -1,3 +1,4 @@
+import { Blockquote } from '@/components/Blockquote'
 import { ContactSection } from '@/components/ContactSection'
 import { Container } from '@/components/Container'
 import { FadeIn } from '@/components/FadeIn'
@@ -7,6 +8,15 @@ import { PageIntro } from '@/components/PageIntro'
 import { PageLinks } from '@/components/PageLinks'
 import { RootLayout } from '@/components/RootLayout'
 import { type CaseStudy, type MDXEntry, loadCaseStudies } from '@/lib/mdx'
+
+function resolveSnapshotSrc(snap: any): string {
+  let raw = typeof snap === 'string' ? snap : snap?.image || snap?.src || snap
+  if (typeof raw !== 'string') return raw?.src || ''
+  if (raw.startsWith('/') || raw.startsWith('http') || raw.startsWith('./') || raw.startsWith('@/')) {
+    return raw
+  }
+  return `/images/uploads/${raw}`
+}
 
 export default async function CaseStudyLayout({
   caseStudy,
@@ -19,6 +29,11 @@ export default async function CaseStudyLayout({
   let moreCaseStudies = allCaseStudies
     .filter(({ metadata }) => metadata !== caseStudy)
     .slice(0, 2)
+
+  let bannerImage = caseStudy.image
+  if (!bannerImage && caseStudy.snapshots && caseStudy.snapshots.length > 0) {
+    bannerImage = { src: resolveSnapshotSrc(caseStudy.snapshots[0]) }
+  }
 
   return (
     <RootLayout>
@@ -46,17 +61,19 @@ export default async function CaseStudyLayout({
               </Container>
             </div>
 
-            <div className="border-y border-neutral-200 bg-neutral-100">
-              <div className="mx-auto -my-px max-w-304 bg-neutral-200">
-                <GrayscaleTransitionImage
-                  {...caseStudy.image}
-                  quality={90}
-                  className="w-full"
-                  sizes="(min-width: 1216px) 76rem, 100vw"
-                  priority
-                />
+            {bannerImage && (
+              <div className="border-y border-neutral-200 bg-neutral-100">
+                <div className="mx-auto -my-px max-w-304 bg-neutral-200">
+                  <GrayscaleTransitionImage
+                    {...(typeof bannerImage === 'string' ? { src: bannerImage } : bannerImage)}
+                    quality={90}
+                    className="w-full"
+                    sizes="(min-width: 1216px) 76rem, 100vw"
+                    priority
+                  />
+                </div>
               </div>
-            </div>
+            )}
           </FadeIn>
         </header>
 
@@ -66,22 +83,32 @@ export default async function CaseStudyLayout({
           </FadeIn>
         </Container>
 
+        {caseStudy.testimonial && caseStudy.testimonial.content && (
+          <Container className="mt-24 sm:mt-32">
+            <FadeIn>
+              <Blockquote author={caseStudy.testimonial.author}>
+                {caseStudy.testimonial.content}
+              </Blockquote>
+            </FadeIn>
+          </Container>
+        )}
+
         {caseStudy.snapshots && caseStudy.snapshots.length > 0 && (
-          <Container className="mt-16 sm:mt-24">
+          <Container className="mt-24 sm:mt-32">
             <FadeIn>
               <h2 className="font-display text-2xl font-semibold text-neutral-950">
                 Project Snapshots & Showcase
               </h2>
               <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {caseStudy.snapshots.map((snap: any, index: number) => {
-                  const src = typeof snap === 'string' ? snap : snap.image || snap.src || snap
+                  const src = resolveSnapshotSrc(snap)
                   return (
                     <div
                       key={index}
-                      className="overflow-hidden rounded-3xl border border-neutral-200 bg-neutral-100 shadow-sm transition hover:shadow-md"
+                      className="overflow-hidden rounded-3xl border border-neutral-200 bg-neutral-100 shadow-sm transition hover:shadow-md aspect-4/3"
                     >
                       <img
-                        src={typeof src === 'string' ? src : src.src}
+                        src={src}
                         alt={`${caseStudy.client} snapshot ${index + 1}`}
                         className="h-full w-full object-cover"
                       />
