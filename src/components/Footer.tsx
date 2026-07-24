@@ -10,15 +10,22 @@ import companyContent from '@/content/company.json'
 function getProjectLinks() {
   const cmsCompanies = (homeContent as any).clientsList || (homeContent as any).trustedCompanies
   if (Array.isArray(cmsCompanies) && cmsCompanies.length > 0) {
-    const links = cmsCompanies.map((c: any) => {
-      const name = typeof c === 'string' ? c : c.name || 'Project'
-      const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-')
-      let href = '/work'
-      if (slug.includes('rightcam')) href = '/work/rightcam'
-      else if (slug.includes('cles')) href = '/work/cleseconomia'
-      else if (slug.includes('cmb') || slug.includes('family')) href = '/work/family-fund'
-      return { title: name, href }
-    })
+    const links = cmsCompanies
+      .map((c: any) => {
+        const name = typeof c === 'string' ? c : c.name || 'Project'
+        const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-')
+        if (slug.includes('awnas')) return null
+        let href = '/work'
+        if (slug.includes('rightcam')) href = '/work/rightcam'
+        else if (slug.includes('cles')) href = '/work/cleseconomia'
+        else if (slug.includes('cmb') || slug.includes('family')) href = '/work/family-fund'
+        return {
+          title: name === 'Cles' ? 'Cles Economia' : name === 'CMB' ? 'Gruppo CMB' : name,
+          href,
+        }
+      })
+      .filter(Boolean) as Array<{ title: string; href: string }>
+
     links.push({ title: 'See all projects →', href: '/work' })
     return links
   }
